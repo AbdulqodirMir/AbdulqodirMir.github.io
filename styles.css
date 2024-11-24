@@ -1,0 +1,17 @@
+body {
+    background-color: #000020;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+ul {
+    list-style-type: none;
+}
+h1, h2 {
+    color: orange;
+    font-weight: bold;
+}
+
+h1 {
+    color: violet;
+}
