@@ -683,7 +683,7 @@
           if (!rimg.naturalWidth || !rc.clientWidth || !rc.clientHeight) return;
           R = fit(rc); step = R.w < 760 ? 3 : 4;
           var iw = rimg.naturalWidth, ih = rimg.naturalHeight, sc = Math.max(R.w / iw, R.h / ih);
-          var dw = iw * sc, dh = ih * sc, ox0 = (R.w - dw) / 2, oy0 = 0;
+          var dw = iw * sc, dh = ih * sc, ox0 = (R.w - dw) / 2, oy0 = step * 3 + 8;
           var cell = 3, n = Math.ceil(R.w / step), m = Math.ceil(R.h / cell);
           var o = doc.createElement("canvas"), ox = o.getContext("2d"); o.width = n; o.height = m;
           ox.drawImage(rimg, ox0 / step, oy0 / cell, dw / step, dh / cell);
@@ -788,7 +788,7 @@
           var sheet = doc.getElementById("sheet"), peek = doc.querySelector(".x-overscroll");
           if (!sheet || !peek || reduce) return;
           var raw = 0, pull = 0, springId = null, idleT = null;
-          function maxPull() { return Math.round(Math.min(peek.offsetHeight || 0, window.innerHeight * 0.58, 460)); }
+          function maxPull() { return Math.round(Math.min(peek.offsetHeight || 0, window.innerHeight * 0.4, 300)); }
           function pullFromRaw(r) { var m = maxPull(); return Math.min(m, m * (1 - Math.exp(-Math.max(0, r) / (m * 1.35)))); }
           function apply() {
             if (pull <= 0.5) { pull = 0; raw = 0; sheet.style.transform = ""; return; }
