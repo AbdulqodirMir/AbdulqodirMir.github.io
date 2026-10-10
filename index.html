@@ -1,23 +1,627 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="styles.css">
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulqodir's Page</title>
-</head>
-<body>
-    <h1>About Me</h1>
-    <p>My name is Abdulqodir.</p>
-    <h2>Classes at Inha University</h2>
-    <ul>
-        <li>Kenguru</li>
-        <li>It</li>
-        <li>Koala</li>
-        <li>Ayiq</li>
-        <li>Bo'ri</li>
-    </ul>
-    <p>Visit my GitHub (idk why it's not working, now i know: it's not my GitHub): <a href="http://AbdulqodirMir.github.io">My GitHub</a></p>
-    <p>This one might work <a href="https://github.com/AbdulqodirMir/AbdulqodirMir.github.io">My GitHub</a></p>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abdulqodir Miraliyev — Founder, Tashkent</title>
+    <meta name="description" content="Abdulqodir Miraliyev — student founder in Tashkent building Oydin and Tortma." />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#2233C8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" />
+    <link rel="preload" as="image" href="v2-hero.webp" fetchpriority="high" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232233C8'/%3E%3Cpath d='M20 6a10 10 0 1 0 6 18A12 12 0 0 1 20 6z' fill='%23EEEDE8'/%3E%3C/svg%3E" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://abdulqodirmir.github.io/" />
+    <meta property="og:url" content="https://abdulqodirmir.github.io/" />
+    <meta property="og:image" content="https://abdulqodirmir.github.io/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:title" content="Abdulqodir Miraliyev — Founder, Tashkent" />
+    <meta property="og:description" content="Student founder in Tashkent building Oydin and Tortma." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Abdulqodir Miraliyev","jobTitle":"Founder","email":"mailto:abdulqodir@oydin.app","address":{"@type":"PostalAddress","addressLocality":"Tashkent","addressCountry":"UZ"},"alumniOf":"Inha University in Tashkent","sameAs":["https://www.linkedin.com/in/abdulqodirmir","https://github.com/AbdulqodirMir","https://t.me/Abdulqodir_Miraliyev","https://oydin.app","https://tortma.com"]}</script>
+    <style>
+      :root {
+        --x-co: #2233c8; --x-co-h: #1a27a0; --x-pa: #eeede8; --x-wh: #ffffff;
+        --x-disp: "Inter Tight", "Helvetica Neue", Arial, system-ui, sans-serif;
+        --x-mono: "JetBrains Mono", ui-monospace, monospace;
+        --x-pad: clamp(16px, 4vw, 48px);
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 72px; }
+      html, body { background: var(--x-pa); color: var(--x-co); }
+      body { margin: 0; font-family: var(--x-disp); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; overflow-x: clip; }
+      img, canvas { max-width: 100%; }
+      h1, h2, h3, p { overflow-wrap: break-word; }
+      .x-skip { position: absolute; left: 12px; top: -60px; z-index: 99; background: var(--x-pa); color: var(--x-co); padding: 12px 16px; font: 500 12px/1 var(--x-mono); letter-spacing: .12em; text-transform: uppercase; }
+      .x-skip:focus { top: 12px; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+      .x-page { display: block; }
+      .x-page ::selection { background: var(--x-co); color: var(--x-pa); }
+      .x-page a:focus-visible, .x-page button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+      .x-mono { font: 500 12px/1.4 var(--x-mono); letter-spacing: .12em; text-transform: uppercase; }
+      .x-tag { margin: 0 0 16px; font: 500 12px/1.4 var(--x-mono); letter-spacing: .12em; text-transform: uppercase; }
+      .x-tag b { font-weight: 500; letter-spacing: -.05em; margin-right: .3em; }
+
+      /* top bar */
+      .x-bar {
+        position: fixed; inset: 0 0 auto 0; z-index: 50; height: 64px;
+        display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+        padding: 0 var(--x-pad); color: var(--x-pa); border-bottom: 1px solid rgba(238,237,232,.28);
+        transition: color .3s, background-color .3s, border-color .3s;
+      }
+      .x-bar.is-paper { color: var(--x-co); background: rgba(238,237,232,.92); border-color: rgba(34,51,200,.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+      .x-bar.is-cobalt-solid { background: rgba(34,51,200,.9); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+      .x-word { font: 600 18px/1 var(--x-disp); letter-spacing: -.02em; color: inherit; text-decoration: none; justify-self: start; min-height: 44px; display: inline-flex; align-items: center; }
+      .x-mid { display: flex; align-items: center; gap: 10px; }
+      .x-pill { display: flex; border: 1px solid currentColor; border-radius: 999px; padding: 2px; }
+      .x-pill a, .x-lang button {
+        min-height: 40px; display: inline-flex; align-items: center; justify-content: center; padding: 0 14px;
+        color: inherit; text-decoration: none; border-radius: 999px; background: none; border: 0; cursor: pointer;
+        font: 500 12px/1 var(--x-mono); letter-spacing: .12em; text-transform: uppercase;
+      }
+      .x-pill a:hover { background: currentColor; }
+      .x-pill a:hover span { color: var(--x-co); }
+      .x-bar.is-paper .x-pill a:hover span { color: var(--x-pa); }
+      .x-lang { display: flex; }
+      .x-lang button { min-width: 44px; min-height: 44px; padding: 0 6px; opacity: .7; }
+      .x-lang button[aria-pressed="true"] { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+      .x-right { justify-self: end; }
+
+      /* buttons */
+      .x-btn {
+        display: inline-flex; align-items: stretch; min-height: 44px; border: 1px solid currentColor; border-radius: 0;
+        color: inherit; text-decoration: none; font: 500 12px/1 var(--x-mono); letter-spacing: .12em; text-transform: uppercase;
+        transition: background-color .2s, color .2s, border-color .2s;
+      }
+      .x-btn i { width: 42px; flex: none; display: grid; place-items: center; border-right: 1px solid currentColor; font-style: normal; }
+      .x-btn i::before { content: ""; width: 8px; height: 8px; background: currentColor; }
+      .x-btn span { display: flex; align-items: center; padding: 0 16px; }
+      .x-btn--fill { background: var(--x-co); color: var(--x-pa); border-color: var(--x-co); }
+      .x-btn--fill:hover { background: var(--x-co-h); border-color: var(--x-co-h); }
+      .x-btn--paper { background: var(--x-pa); color: var(--x-co); border-color: var(--x-pa); }
+      .x-btn--paper:hover { background: var(--x-wh); }
+      .x-btn--line:hover { background: var(--x-co-h); color: var(--x-pa); border-color: var(--x-co-h); }
+      .x-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+
+      /* hero */
+      .x-hero { position: relative; min-height: 100svh; background: var(--x-co); color: var(--x-pa); overflow: hidden; display: flex; align-items: flex-end; }
+      .x-hero__img, .x-hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; display: block; }
+      .x-hero canvas { transition: opacity .5s ease-out; pointer-events: none; }
+      .x-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(34,51,200,.92) 0%, rgba(34,51,200,.55) 38%, rgba(34,51,200,0) 70%), linear-gradient(to right, rgba(34,51,200,.6), rgba(34,51,200,0) 60%); pointer-events: none; }
+      .x-hero__in { position: relative; z-index: 2; width: 100%; padding: 120px var(--x-pad) clamp(28px, 6vh, 56px); display: grid; gap: 28px; grid-template-columns: 1fr; align-items: end; }
+      .x-hero h1 { margin: 0; font: 600 clamp(32px, min(7.4vw + 10px, 10vh), 104px)/.95 var(--x-disp); letter-spacing: -.045em; }
+      .x-hero h1 span { display: block; }
+      .x-hero__side { max-width: 380px; display: grid; gap: 18px; }
+      .x-hero__side p { margin: 0; font: 400 16px/1.5 var(--x-disp); }
+      @media (min-width: 900px) { .x-hero__in { grid-template-columns: 1fr auto; } }
+
+      /* statement */
+      .x-state { overflow: hidden; overflow: clip; padding: clamp(72px, 12vw, 160px) 0; border-bottom: 1px solid rgba(34,51,200,.25); }
+      .x-ht {
+        margin: 0; white-space: nowrap; font-family: var(--x-disp); font-weight: 600; color: var(--x-co); -webkit-text-fill-color: transparent;
+        background: radial-gradient(circle at center, var(--x-co) 0 1.6px, transparent 2.1px) 0 0 / 5px 5px;
+        -webkit-background-clip: text; background-clip: text; will-change: transform;
+      }
+      .x-ht--a { font-size: clamp(56px, 12vw, 180px); line-height: 1; letter-spacing: -.04em; padding-left: var(--x-pad); }
+      .x-ht--b { font-size: 22vw; line-height: .86; letter-spacing: -.055em; text-align: center; margin-top: .06em; }
+
+      /* work */
+      .x-sec { padding: clamp(72px, 10vw, 128px) var(--x-pad); }
+      .x-h2 { margin: 0 0 40px; font: 600 clamp(34px, 5.6vw, 72px)/1 var(--x-disp); letter-spacing: -.04em; max-width: 14ch; }
+      .x-row { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(-1 * var(--x-pad)); padding: 0 var(--x-pad) 12px; scroll-padding: 0 var(--x-pad); list-style: none; scrollbar-width: thin; }
+      .x-card { flex: 0 0 min(84vw, 420px); scroll-snap-align: start; background: var(--x-wh); border: 1px solid rgba(34,51,200,.25); position: relative; display: flex; flex-direction: column; padding: 20px; gap: 16px; }
+      .x-card::after { content: ""; position: absolute; top: -1px; right: -1px; width: 16px; height: 16px; background: var(--x-co); }
+      .x-card h3 { margin: 0; font: 600 34px/1 var(--x-disp); letter-spacing: -.035em; }
+      .x-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; border: 1px solid rgba(34,51,200,.15); }
+      .x-card p { margin: 0; font: 400 16px/1.5 var(--x-disp); }
+      @media (min-width: 1200px) { .x-card { padding: 24px; } }
+      .x-card .x-meta { opacity: .85; }
+      .x-card .x-btn { margin-top: auto; align-self: flex-start; }
+      .x-idx { margin: 0; display: flex; justify-content: space-between; padding-right: 20px; opacity: .8; }
+      .x-card { transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s; }
+      .x-card img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+      .x-card figure { margin: 0; overflow: hidden; border: 1px solid rgba(34,51,200,.15); background: #fff; }
+      .x-card figure img { border: 0; }
+      @media (hover: hover) { .x-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -18px rgba(34,51,200,.45); } .x-card:hover img { transform: scale(1.04); } }
+      .x-swipe { margin: -24px 0 16px; opacity: .7; }
+      .x-row { scrollbar-width: none; } .x-row::-webkit-scrollbar { display: none; }
+      @media (min-width: 1200px) { .x-swipe { display: none; } }
+      @media (min-width: 1200px) { .x-row { overflow: visible; } .x-card { flex: 1 1 0; } }
+
+      /* footer */
+      .x-foot { padding-bottom: 96px; }
+      .x-frieze { display: block; width: 100%; height: clamp(180px, 30vw, 420px); object-fit: cover; object-position: center 35%; -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent); mask-image: linear-gradient(to bottom, #000 45%, transparent); }
+      .x-foot__in { padding: 24px var(--x-pad) 0; }
+      .x-foot h2 { margin: 0 0 24px; font: 600 clamp(36px, 6.4vw, 88px)/1 var(--x-disp); letter-spacing: -.045em; max-width: 12ch; }
+      .x-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px; margin-top: 8px; padding-top: 24px; border-top: 1px solid rgba(34,51,200,.35); }
+      .x-cols h3 { margin: 0 0 8px; font: 500 12px/1.4 var(--x-mono); letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+      .x-cols ul { list-style: none; margin: 0; padding: 0; }
+      .x-cols a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--x-co); text-decoration: none; font: 500 12px/1.2 var(--x-mono); letter-spacing: .12em; text-transform: uppercase; }
+      .x-cols a:hover { text-decoration: underline; text-underline-offset: 4px; }
+      .x-cols img { width: 24px; height: 24px; display: block; }
+      .x-legal { margin: 48px 0 0; padding-top: 16px; border-top: 1px solid rgba(34,51,200,.35); }
+
+      /* cobalt sections */
+      .x-co { background: var(--x-co); color: var(--x-pa); }
+      .x-co .x-h2 { color: var(--x-wh); }
+      .x-btn--white { background: var(--x-wh); color: var(--x-co); border-color: var(--x-wh); }
+      .x-btn--white:hover { background: var(--x-pa); border-color: var(--x-pa); }
+
+      /* path */
+      .x-path { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(238,237,232,.3); }
+      .x-path li { position: relative; display: grid; transition: background-color .3s; gap: 8px 32px; padding: 28px 0; border-bottom: 1px solid rgba(238,237,232,.3); }
+      .x-path h3 { margin: 0; font: 600 clamp(24px, 3.4vw, 44px)/1.05 var(--x-disp); letter-spacing: -.035em; color: var(--x-wh); }
+      .x-path h3 span + span { opacity: .6; }
+      .x-path p { margin: 0; }
+      .x-path .x-mono { opacity: .8; padding-top: 6px; }
+      .x-path .x-d { margin-top: 10px; font: 400 15px/1.45 var(--x-disp); max-width: 64ch; opacity: .85; }
+      @media (min-width: 760px) { .x-path li { grid-template-columns: 220px 1fr; } }
+      .x-anim .x-path li { clip-path: inset(0 100% 0 0); transition: clip-path .9s cubic-bezier(.6,0,.2,1) calc(var(--i) * 110ms); }
+      .x-anim .x-path li::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--x-wh); box-shadow: 0 0 14px 1px var(--x-wh); opacity: 0; pointer-events: none; }
+      .x-anim .x-path li.is-in { clip-path: inset(0 0 0 0); }
+      .x-anim .x-path li.is-in::after { animation: x-scan .9s cubic-bezier(.6,0,.2,1) calc(var(--i) * 110ms) both; }
+      @keyframes x-scan { 0% { left: 0; opacity: 1; } 88% { left: calc(100% - 2px); opacity: 1; } 100% { left: calc(100% - 2px); opacity: 0; } }
+
+      /* mountains + skills */
+      .x-mtn { padding: clamp(72px, 10vw, 128px) 0 0; overflow: hidden; }
+      .x-mtn > .x-tag, .x-mtn > .x-h2 { margin-left: var(--x-pad); margin-right: var(--x-pad); }
+      .x-mtn__stage { position: relative; }
+      .x-mtn canvas { display: block; width: 100%; height: clamp(260px, 52vh, 560px); margin-top: clamp(24px, 6vw, 72px); }
+      .x-sks { display: grid; gap: 12px; padding: 0 var(--x-pad); grid-template-columns: 1fr; position: relative; z-index: 1; }
+      @media (min-width: 700px) { .x-sks { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 1200px) { .x-sks { grid-template-columns: repeat(4, 1fr); } }
+      .x-sk { position: relative; background: var(--x-wh); border: 1px solid rgba(34,51,200,.25); padding: 16px 20px; will-change: transform; }
+      .x-sk::after { content: ""; position: absolute; top: -1px; right: -1px; width: 12px; height: 12px; background: var(--x-co); }
+      .x-sk h3 { margin: 0 0 10px; font: 500 12px/1.4 var(--x-mono); letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+      .x-sk ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font: 500 16px/1.4 var(--x-disp); letter-spacing: -.01em; }
+      .x-sk dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font: 500 16px/1.4 var(--x-disp); }
+      .x-sk dd { margin: 0; opacity: .75; }
+
+
+      /* cta */
+      .x-cta { position: relative; overflow: hidden; min-height: min(92svh, 860px); display: grid; place-items: center; text-align: center; padding: 96px var(--x-pad); }
+      .x-cta canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+      .x-cta__in { position: relative; display: grid; justify-items: center; gap: 32px; }
+      .x-cta .x-tag { margin: 0; }
+      .x-cta h2 { margin: 0; font: 600 clamp(48px, 10vw, 150px)/.92 var(--x-disp); letter-spacing: -.05em; color: var(--x-wh); max-width: 11ch; }
+
+      /* seams */
+      .x-seam { display: block; height: 48px; }
+      .x-seam canvas { display: block; width: 100%; height: 48px; }
+      .x-seam[data-s="cp"] { background: linear-gradient(var(--x-co) 50%, var(--x-pa) 50%); }
+      .x-seam[data-s="pc"] { background: linear-gradient(var(--x-pa) 50%, var(--x-co) 50%); }
+
+      /* phones */
+      @media (max-width: 760px) {
+        .x-bar, .x-bar.is-paper, .x-bar.is-cobalt-solid { grid-template-columns: 1fr auto; height: 56px; -webkit-backdrop-filter: none; backdrop-filter: none; }
+        .x-bar.is-paper { background: rgba(238,237,232,.97); }
+        .x-bar.is-cobalt-solid { background: rgba(34,51,200,.97); }
+        .x-pill a { padding: 0 16px; }
+        .x-foot { padding-bottom: 120px; }
+        .x-hero__in { padding-bottom: 96px; }
+        .x-cta { min-height: 78svh; }
+        .x-right { display: none; }
+        .x-mid { display: contents; }
+        .x-mid .x-lang { justify-self: end; }
+        .x-pill { position: fixed; left: 50%; bottom: max(12px, env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--x-co); color: var(--x-pa); border-color: rgba(238,237,232,.5); box-shadow: 0 8px 24px rgba(26,39,160,.3); }
+        .x-bar.is-paper .x-pill a:hover span { color: var(--x-co); }
+        .x-pill a { min-height: 44px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .x-ht { transform: none !important; } .x-hero canvas { display: none; } }
+    </style>
+  </head>
+  <body>
+    <a class="x-skip" href="#main">Skip to content</a>
+    <div class="x-page" id="top">
+      <header class="x-bar is-cobalt-solid" id="bar">
+        <a class="x-word" href="#top" aria-label="Miraliyev, back to top">MIRALIYEV</a>
+        <div class="x-mid">
+          <nav class="x-pill" aria-label="Sections">
+            <a href="#work"><span data-i18n="nav.work">Work</span></a>
+            <a href="#path"><span data-i18n="nav.path">Path</span></a>
+            <a href="#touch"><span data-i18n="nav.contact">Contact</span></a>
+          </nav>
+          <div class="x-lang" role="group" aria-label="Language">
+            <button type="button" data-lang="uz" lang="uz" aria-pressed="false">UZ</button>
+            <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="ru" lang="ru" aria-pressed="false">RU</button>
+          </div>
+        </div>
+        <a class="x-btn x-right" href="mailto:abdulqodir@oydin.app"><i aria-hidden="true"></i><span data-i18n="cta.write">Write to me</span></a>
+      </header>
+
+      <main id="main">
+        <section class="x-hero" data-tone="cobalt" aria-labelledby="hero-h">
+          <img class="x-hero__img" id="hero-img" src="v2-hero.webp" width="1376" height="768" alt="" fetchpriority="high" />
+          <canvas id="mosaic" aria-hidden="true"></canvas>
+          <div class="x-hero__in">
+            <div>
+              <p class="x-tag"><b>■■/</b> <span data-i18n="hero.tag">Founder · Tashkent</span></p>
+              <h1 id="hero-h"><span data-i18n="hero.h1">Student founder</span><span data-i18n="hero.h2">building products</span><span data-i18n="hero.h3">for Uzbekistan &amp; beyond.</span></h1>
+            </div>
+            <div class="x-hero__side">
+              <p data-i18n="hero.p">Computer &amp; Information Engineering @ Inha University. Founder of Oydin and Tortma.</p>
+              <div class="x-btns">
+                <a class="x-btn x-btn--paper" href="#work"><i aria-hidden="true"></i><span data-i18n="cta.work">Explore work</span></a>
+                <a class="x-btn" href="https://www.linkedin.com/in/abdulqodirmir" target="_blank" rel="noopener"><i aria-hidden="true"></i><span>LinkedIn</span></a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="x-seam" data-s="cp" aria-hidden="true"><canvas></canvas></div>
+
+        <section class="x-state" data-tone="paper" aria-label="This is Miraliyev">
+          <p class="x-ht x-ht--a" data-dir="1" aria-hidden="true" data-i18n="state.a">This is</p>
+          <p class="x-ht x-ht--b" data-dir="-1" aria-hidden="true"><span id="name-fit">MIRALIYEV</span></p>
+        </section>
+
+        <section class="x-sec" id="work" data-tone="paper" aria-labelledby="work-h">
+          <p class="x-tag"><b>■■/</b> 01 — <span data-i18n="work.tag">What I build</span></p>
+          <h2 class="x-h2" id="work-h" data-i18n="work.title">What I'm building.</h2>
+          <p class="x-mono x-swipe" aria-hidden="true"><span data-i18n="swipe">Swipe</span> →</p>
+          <ol class="x-row">
+            <li class="x-card">
+              <p class="x-mono x-idx"><span>/ 01</span><span data-i18n="role.f">Founder</span></p>
+              <h3>Oydin</h3>
+              <figure><img src="v2-obj-moon.webp" width="640" height="640" loading="lazy" alt="A crescent moon object, the Oydin mark" /></figure>
+              <p data-i18n="oydin.tag">A reliable guide to shops, services, and deals in Almalyk.</p>
+              <p class="x-meta" data-i18n="oydin.b2">Now onboarding real vendors and preparing go-to-market.</p>
+              <a class="x-btn x-btn--line" href="https://oydin.app" target="_blank" rel="noopener"><i aria-hidden="true"></i><span>oydin.app</span></a>
+            </li>
+            <li class="x-card">
+              <p class="x-mono x-idx"><span>/ 02</span><span data-i18n="role.f">Founder</span></p>
+              <h3>Tortma</h3>
+              <figure><img src="v2-obj-tortma.webp" width="640" height="640" loading="lazy" alt="A sorting object for Tortma" /></figure>
+              <p data-i18n="tortma.tag">An AI Chrome extension that sorts YouTube videos into the right playlists in about a second.</p>
+              <p class="x-meta" data-i18n="tortma.b1">Published on the Chrome Web Store on July 1, 2026.</p>
+              <a class="x-btn x-btn--line" href="https://tortma.com" target="_blank" rel="noopener"><i aria-hidden="true"></i><span>tortma.com</span></a>
+            </li>
+            <li class="x-card">
+              <p class="x-mono x-idx"><span>/ 03</span><span data-i18n="role.e">AI engineer</span></p>
+              <h3>Flowlify</h3>
+              <figure><img src="v2-obj-voice.webp" width="640" height="640" loading="lazy" alt="A voice wave object for AI voice agents" /></figure>
+              <p data-i18n="flow.tag">AI implementation · July 2026. Deployed AI voice agents that handle calls for small businesses.</p>
+              <p class="x-meta" data-i18n="flow.b">Learned how agents are tested, configured and integrated with client tools.</p>
+              <a class="x-btn x-btn--line" href="https://flowlifyai.com" target="_blank" rel="noopener"><i aria-hidden="true"></i><span>flowlifyai.com</span></a>
+            </li>
+          </ol>
+        </section>
+
+        <div class="x-seam" data-s="pc" aria-hidden="true"><canvas></canvas></div>
+        <section class="x-sec x-co" id="path" data-tone="cobalt" aria-labelledby="path-h">
+          <p class="x-tag"><b>■■/</b> 02 — <span data-i18n="nav.path">Path</span></p>
+          <h2 class="x-h2" id="path-h" data-i18n="exp.title">Where I've learned by doing.</h2>
+          <ol class="x-path">
+            <li style="--i:0"><p class="x-mono"><span data-i18n="exp.1.when">July 2026</span> · <span data-i18n="exp.1.mode">On-site</span></p><div><h3><span data-i18n="exp.1.role">Forward-Deployed AI Implementation Engineer</span> <span>/ Flowlify</span></h3><p class="x-d" data-i18n="path.1.d">Worked with the engineering team deploying AI voice agents for booking and reception calls.</p></div></li>
+            <li style="--i:1"><p class="x-mono"><span data-i18n="exp.2.when">July – Aug 2025</span> · <span data-i18n="exp.2.mode">Remote</span></p><div><h3><span data-i18n="exp.2.role">Search Quality Improvement Lead</span> <span>/ Yandex Crowd</span></h3><p class="x-d" data-i18n="exp.2.desc">Assessed web content for trustworthiness, flagged deceptive content farms, and rated content quality across thousands of pages.</p></div></li>
+            <li style="--i:2"><p class="x-mono">2024 – 2028</p><div><h3><span data-i18n="path.inha">Computer &amp; Information Engineering</span> <span>/ Inha University in Tashkent</span></h3><p class="x-d" data-i18n="edu.inha">Bachelor's, School of Computer and Information Engineering</p></div></li>
+            <li style="--i:3"><p class="x-mono"><span data-i18n="exp.3.when">July – Aug 2024</span> · <span data-i18n="exp.3.mode">Almalyk</span></p><div><h3><span data-i18n="exp.3.role">Videographer</span> <span>/ IQRO Agency</span></h3><p class="x-d" data-i18n="exp.3.desc">Produced mobile video content that grew the agency's social audience.</p></div></li>
+            <li style="--i:4"><p class="x-mono" data-i18n="edu.award">Award</p><div><h3><span data-i18n="edu.mohir">National Hackathon Champion</span> <span>/ MohirFest22</span></h3><p class="x-d" data-i18n="path.mohir.d">First place at the national hackathon.</p></div></li>
+            <li style="--i:5"><p class="x-mono" data-i18n="exp.4.when">Sept 2022 – Oct 2023</p><div><h3><span data-i18n="exp.4.role">Media Team Lead</span> <span>/ <span data-i18n="exp.4.org">Nurafshon Presidential School</span></span></h3><p class="x-d" data-i18n="exp.4.desc">Led the video editing team; founded a Photoshop club and taught 100+ students; head editor of the school magazine “Ko'zgu”.</p></div></li>
+          </ol>
+        </section>
+        <div class="x-seam" data-s="cp" aria-hidden="true"><canvas></canvas></div>
+
+        <section class="x-mtn" id="skills" data-tone="paper" aria-labelledby="skills-h">
+          <p class="x-tag"><b>■■/</b> 03 — <span data-i18n="skills.tag">Skills</span></p>
+          <h2 class="x-h2" id="skills-h" data-i18n="skills.label">Skills &amp; languages</h2>
+          <div class="x-mtn__stage">
+            <div class="x-sks">
+              <div class="x-sk"><h3 data-i18n="sg.ai">AI &amp; product</h3><ul><li data-i18n="sk.0">AI multi-agent workflows</li><li data-i18n="sk.1">Product design</li><li data-i18n="sk.2">Go-to-market</li></ul></div>
+              <div class="x-sk"><h3 data-i18n="sg.code">Code</h3><ul><li>Python</li><li>HTML/CSS</li><li data-i18n="sk.5">C++ (basics)</li><li>Google Cloud OAuth</li></ul></div>
+              <div class="x-sk"><h3 data-i18n="sg.media">Media &amp; tools</h3><ul><li data-i18n="sk.7">Video editing</li><li data-i18n="sk.8">Presentation design</li><li>Notion</li><li>Asana</li><li>Google Workspace</li></ul></div>
+              <div class="x-sk"><h3 data-i18n="sg.lang">Languages</h3><dl><dt data-i18n="lang.uz">Uzbek</dt><dd data-i18n="lang.uz.l">Native</dd><dt data-i18n="lang.en">English</dt><dd>IELTS 7.0 · C1</dd><dt data-i18n="lang.ru">Russian</dt><dd data-i18n="lang.ru.l">Improving</dd></dl></div>
+            </div>
+          </div>
+          <canvas id="ridge" aria-hidden="true"></canvas>
+        </section>
+
+        <section class="x-cta x-co" id="touch" data-tone="cobalt" aria-labelledby="cta-h">
+          <canvas id="stars" aria-hidden="true"></canvas>
+          <div class="x-cta__in">
+            <p class="x-tag"><b>■■/</b> <span data-i18n="cta.touch">Get in touch</span></p>
+            <h2 id="cta-h" data-i18n="contact.title">Let's build something.</h2>
+            <a class="x-btn x-btn--white" href="mailto:abdulqodir@oydin.app"><i aria-hidden="true"></i><span>abdulqodir@oydin.app</span></a>
+          </div>
+        </section>
+        <div class="x-seam" data-s="cp" aria-hidden="true"><canvas></canvas></div>
+      </main>
+
+      <footer class="x-foot" id="contact" data-tone="paper">
+        <img class="x-frieze" src="v2-frieze.webp" width="1792" height="592" loading="lazy" alt="" />
+        <div class="x-foot__in">
+          <div class="x-cols">
+            <div>
+              <h3 data-i18n="foot.proj">Projects</h3>
+              <ul>
+                <li><a href="https://oydin.app" target="_blank" rel="noopener"><img src="oydin-logo.png" width="24" height="24" alt="" />Oydin</a></li>
+                <li><a href="https://tortma.com" target="_blank" rel="noopener"><img src="tortma-icon.png" width="24" height="24" alt="" />Tortma</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 data-i18n="foot.else">Elsewhere</h3>
+              <ul>
+                <li><a href="https://www.linkedin.com/in/abdulqodirmir" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+                <li><a href="https://github.com/AbdulqodirMir" target="_blank" rel="noopener">GitHub ↗</a></li>
+                <li><a href="https://t.me/Abdulqodir_Miraliyev" target="_blank" rel="noopener">Telegram ↗</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 data-i18n="nav.contact">Contact</h3>
+              <ul><li><a href="mailto:abdulqodir@oydin.app">abdulqodir@oydin.app</a></li></ul>
+            </div>
+          </div>
+          <p class="x-mono x-legal" data-i18n="foot.legal">© 2026 Abdulqodir Miraliyev · Tashkent, Uzbekistan</p>
+        </div>
+      </footer>
+    </div>
+        <script>
+      (function () {
+        var D = {
+          en: {
+            "nav.work": "Work", "nav.path": "Path", "nav.contact": "Contact", "cta.write": "Write to me", "cta.work": "Explore work",
+            "hero.tag": "Founder · Tashkent", "hero.h1": "Student founder", "hero.h2": "building products", "hero.h3": "for Uzbekistan & beyond.",
+            "hero.p": "Computer & Information Engineering @ Inha University. Founder of Oydin and Tortma.",
+            "state.a": "This is", "work.tag": "What I build", "work.title": "What I'm building.",
+            "oydin.tag": "A reliable guide to shops, services, and deals in Almalyk.",
+            "oydin.b2": "Now onboarding real vendors and preparing go-to-market.",
+            "tortma.tag": "An AI Chrome extension that sorts YouTube videos into the right playlists in about a second.",
+            "tortma.b1": "Published on the Chrome Web Store on July 1, 2026.",
+            "flow.tag": "AI implementation · July 2026. Deployed AI voice agents that handle calls for small businesses.",
+            "flow.b": "Learned how agents are tested, configured and integrated with client tools.",
+            "foot.h": "Ready to work together?", "foot.proj": "Projects", "foot.else": "Elsewhere",
+            "foot.legal": "© 2026 Abdulqodir Miraliyev · Tashkent, Uzbekistan",
+            "exp.title": "Where I've learned by doing.", "exp.1.when": "July 2026", "exp.1.mode": "On-site", "exp.1.role": "Forward-Deployed AI Implementation Engineer",
+            "path.1.d": "Worked with the engineering team deploying AI voice agents for booking and reception calls.",
+            "exp.2.when": "July – Aug 2025", "exp.2.mode": "Remote", "exp.2.role": "Search Quality Improvement Lead",
+            "exp.2.desc": "Assessed web content for trustworthiness, flagged deceptive content farms, and rated content quality across thousands of pages.",
+            "path.inha": "Computer & Information Engineering", "edu.inha": "Bachelor's, School of Computer and Information Engineering",
+            "exp.3.when": "July – Aug 2024", "exp.3.mode": "Almalyk", "exp.3.role": "Videographer", "exp.3.desc": "Produced mobile video content that grew the agency's social audience.",
+            "edu.award": "Award", "edu.mohir": "National Hackathon Champion", "path.mohir.d": "First place at the national hackathon.",
+            "exp.4.when": "Sept 2022 – Oct 2023", "exp.4.role": "Media Team Lead", "exp.4.org": "Nurafshon Presidential School",
+            "exp.4.desc": "Led the video editing team; founded a Photoshop club and taught 100+ students; head editor of the school magazine “Ko'zgu”.",
+            "skills.tag": "Skills", "skills.label": "Skills & languages", "sg.ai": "AI & product", "sg.code": "Code", "sg.media": "Media & tools", "sg.lang": "Languages",
+            "sk.0": "AI multi-agent workflows", "sk.1": "Product design", "sk.2": "Go-to-market", "sk.5": "C++ (basics)", "sk.7": "Video editing", "sk.8": "Presentation design",
+            "lang.uz": "Uzbek", "lang.uz.l": "Native", "lang.en": "English", "lang.ru": "Russian", "lang.ru.l": "Improving",
+            "cta.touch": "Get in touch", "contact.title": "Let's build something.", "role.f": "Founder", "role.e": "AI engineer", "swipe": "Swipe"
+          },
+          uz: {
+            "nav.work": "Loyihalar", "nav.path": "Yoʻl", "nav.contact": "Bogʻlanish", "cta.write": "Menga yozing", "cta.work": "Ishlarni koʻrish",
+            "hero.tag": "Asoschi · Toshkent", "hero.h1": "Talaba-asoschi.", "hero.h2": "Oʻzbekiston uchun", "hero.h3": "mahsulot yarataman.",
+            "hero.p": "Kompyuter va axborot muhandisligi @ Inha University. Oydin va Tortma asoschisi.",
+            "state.a": "Bu —", "work.tag": "Nima yarataman", "work.title": "Nimalar ustida ishlayapman.",
+            "oydin.tag": "Olmaliqdagi doʻkonlar, xizmatlar va chegirmalar boʻyicha ishonchli qoʻllanma.",
+            "oydin.b2": "Hozir real sotuvchilarni ulayapman va bozorga chiqishga tayyorlanyapman.",
+            "tortma.tag": "YouTube videolarini taxminan bir soniyada kerakli pleylistlarga saralaydigan AI Chrome kengaytmasi.",
+            "tortma.b1": "2026-yil 1-iyulda Chrome Web Storeʼda chop etildi.",
+            "flow.tag": "AI joriy etish · Iyul 2026. Kichik bizneslar uchun qoʻngʻiroqlarni boshqaradigan AI ovozli agentlarni joriy etdim.",
+            "flow.b": "Agentlar qanday sinovdan oʻtkazilishi, sozlanishi va mijoz vositalariga ulanishini oʻrgandim.",
+            "foot.h": "Birga ishlashga tayyormisiz?", "foot.proj": "Loyihalar", "foot.else": "Boshqa joylarda",
+            "foot.legal": "© 2026 Abdulqodir Miraliyev · Toshkent, Oʻzbekiston",
+            "exp.title": "Amalda oʻrgangan joylarim.", "exp.1.when": "Iyul 2026", "exp.1.mode": "Ofisda", "exp.1.role": "Forward-Deployed AI joriy etish muhandisi",
+            "path.1.d": "Muhandislar jamoasi bilan bron qilish va qabulxona qoʻngʻiroqlari uchun AI ovozli agentlarni joriy etdim.",
+            "exp.2.when": "Iyul – Avgust 2025", "exp.2.mode": "Masofaviy", "exp.2.role": "Qidiruv sifatini oshirish boʻyicha yetakchi",
+            "exp.2.desc": "Veb-kontentning ishonchliligini baholadim, aldamchi kontent fermalarini aniqladim va minglab sahifalar sifatiga baho berdim.",
+            "path.inha": "Kompyuter va axborot muhandisligi", "edu.inha": "Bakalavr, Kompyuter va axborot muhandisligi maktabi",
+            "exp.3.when": "Iyul – Avgust 2024", "exp.3.mode": "Olmaliq", "exp.3.role": "Videograf", "exp.3.desc": "Agentlikning ijtimoiy tarmoqlardagi auditoriyasini oʻstirgan mobil video kontent tayyorladim.",
+            "edu.award": "Mukofot", "edu.mohir": "Milliy hakaton gʻolibi", "path.mohir.d": "Milliy hakatonda birinchi oʻrin.",
+            "exp.4.when": "Sentabr 2022 – Oktabr 2023", "exp.4.role": "Media jamoasi rahbari", "exp.4.org": "Nurafshon Prezident maktabi",
+            "exp.4.desc": "Video montaj jamoasini boshqardim; Photoshop toʻgaragini ochib, 100 dan ortiq oʻquvchiga dars berdim; maktabning “Koʻzgu” jurnali bosh muharriri boʻldim.",
+            "skills.tag": "Koʻnikmalar", "skills.label": "Koʻnikmalar va tillar", "sg.ai": "AI va mahsulot", "sg.code": "Kod", "sg.media": "Media va vositalar", "sg.lang": "Tillar",
+            "sk.0": "AI multi-agent ish jarayonlari", "sk.1": "Mahsulot dizayni", "sk.2": "Bozorga chiqish", "sk.5": "C++ (asoslar)", "sk.7": "Video montaj", "sk.8": "Taqdimot dizayni",
+            "lang.uz": "Oʻzbek tili", "lang.uz.l": "Ona tili", "lang.en": "Ingliz tili", "lang.ru": "Rus tili", "lang.ru.l": "Rivojlantiryapman",
+            "cta.touch": "Bogʻlanish", "contact.title": "Keling, birga yaratamiz.", "role.f": "Asoschi", "role.e": "AI muhandis", "swipe": "Suring"
+          },
+          ru: {
+            "nav.work": "Проекты", "nav.path": "Путь", "nav.contact": "Контакты", "cta.write": "Написать мне", "cta.work": "Смотреть работы",
+            "hero.tag": "Основатель · Ташкент", "hero.h1": "Студент-основатель,", "hero.h2": "создающий продукты", "hero.h3": "для Узбекистана и не только.",
+            "hero.p": "Компьютерная и информационная инженерия @ Inha University. Основатель Oydin и Tortma.",
+            "state.a": "Это", "work.tag": "Что я создаю", "work.title": "Над чем я работаю.",
+            "oydin.tag": "Надёжный гид по магазинам, услугам и скидкам Алмалыка.",
+            "oydin.b2": "Сейчас подключаю реальных продавцов и готовлю выход на рынок.",
+            "tortma.tag": "AI-расширение для Chrome, которое примерно за секунду раскладывает видео с YouTube по нужным плейлистам.",
+            "tortma.b1": "Опубликовано в Chrome Web Store 1 июля 2026 года.",
+            "flow.tag": "Внедрение AI · Июль 2026. Внедрял голосовых AI-агентов, которые принимают звонки для малого бизнеса.",
+            "flow.b": "Изучил, как агентов тестируют, настраивают и интегрируют с инструментами клиентов.",
+            "foot.h": "Готовы работать вместе?", "foot.proj": "Проекты", "foot.else": "В сети",
+            "foot.legal": "© 2026 Abdulqodir Miraliyev · Ташкент, Узбекистан",
+            "exp.title": "Где я учился на практике.", "exp.1.when": "Июль 2026", "exp.1.mode": "Очно", "exp.1.role": "Forward-Deployed инженер по внедрению AI",
+            "path.1.d": "Вместе с инженерной командой внедрял голосовых AI-агентов для бронирования и ресепшна.",
+            "exp.2.when": "Июль – август 2025", "exp.2.mode": "Удалённо", "exp.2.role": "Ведущий по улучшению качества поиска",
+            "exp.2.desc": "Оценивал достоверность веб-контента, выявлял обманные контент-фермы и оценивал качество тысяч страниц.",
+            "path.inha": "Компьютерная и информационная инженерия", "edu.inha": "Бакалавриат, Школа компьютерной и информационной инженерии",
+            "exp.3.when": "Июль – август 2024", "exp.3.mode": "Алмалык", "exp.3.role": "Видеограф", "exp.3.desc": "Снимал мобильный видеоконтент, который помог вырастить аудиторию агентства в соцсетях.",
+            "edu.award": "Награда", "edu.mohir": "Победитель национального хакатона", "path.mohir.d": "Первое место на национальном хакатоне.",
+            "exp.4.when": "Сентябрь 2022 – октябрь 2023", "exp.4.role": "Руководитель медиакоманды", "exp.4.org": "Президентская школа Нурафшон",
+            "exp.4.desc": "Руководил командой видеомонтажа; основал кружок Photoshop и обучил более 100 учеников; был главным редактором школьного журнала «Ko'zgu».",
+            "skills.tag": "Навыки", "skills.label": "Навыки и языки", "sg.ai": "AI и продукт", "sg.code": "Код", "sg.media": "Медиа и инструменты", "sg.lang": "Языки",
+            "sk.0": "Мультиагентные AI-процессы", "sk.1": "Продуктовый дизайн", "sk.2": "Выход на рынок", "sk.5": "C++ (основы)", "sk.7": "Видеомонтаж", "sk.8": "Дизайн презентаций",
+            "lang.uz": "Узбекский", "lang.uz.l": "Родной", "lang.en": "Английский", "lang.ru": "Русский", "lang.ru.l": "Совершенствую",
+            "cta.touch": "Связаться", "contact.title": "Давайте создадим что-то.", "role.f": "Основатель", "role.e": "AI-инженер", "swipe": "Листайте"
+          }
+        };
+        var doc = document, root = doc.documentElement;
+        function setLang(l) {
+          if (!D[l]) l = "en";
+          root.lang = l;
+          [].forEach.call(doc.querySelectorAll("[data-i18n]"), function (el) { var v = D[l][el.getAttribute("data-i18n")]; if (v) el.textContent = v; });
+          [].forEach.call(doc.querySelectorAll("[data-lang]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === l ? "true" : "false"); });
+          try { localStorage.setItem("x-lang", l); } catch (e) {}
+        }
+        [].forEach.call(doc.querySelectorAll("[data-lang]"), function (b) { b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); }); });
+        var saved = null; try { saved = localStorage.getItem("x-lang"); } catch (e) {}
+        if (saved && saved !== "en") setLang(saved);
+
+        /* nav tone */
+        var bar = doc.getElementById("bar");
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var paper = e.target.getAttribute("data-tone") === "paper";
+            bar.classList.toggle("is-paper", paper);
+            bar.classList.toggle("is-cobalt-solid", !paper);
+          });
+        }, { rootMargin: "-32px 0px -95% 0px" });
+        [].forEach.call(doc.querySelectorAll("[data-tone]"), function (s) { io.observe(s); });
+
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* one rAF loop: tasks get (time, vh) and return true to keep animating */
+        var tasks = [], sizers = [], raf = 0, $ = function (id) { return doc.getElementById(id); };
+        var DPR = function () { return Math.min(window.devicePixelRatio || 1, 2); };
+        function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+        function frame(t) { raf = 0; var vh = window.innerHeight, more = false; tasks.forEach(function (f) { if (f(t, vh)) more = true; }); if (more) kick(); }
+        function vis(el, vh) { var r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < vh ? r : null; }
+        function fit(c, h) { var d = DPR(), w = Math.max(1, c.clientWidth); h = Math.max(1, h || c.clientHeight); c.width = Math.round(w * d); c.height = Math.round(h * d); return { w: w, h: h, d: d }; }
+        window.addEventListener("scroll", kick, { passive: true });
+        var lastW = window.innerWidth, rT; window.addEventListener("resize", function () { clearTimeout(rT); rT = setTimeout(function () { if (window.innerWidth === lastW && Math.abs(window.innerHeight - (window.__h || 0)) < 140) return; lastW = window.innerWidth; window.__h = window.innerHeight; sizers.forEach(function (f) { f(); }); kick(); }, 120); });
+        window.__h = window.innerHeight;
+
+        /* statement drift */
+        var state = doc.querySelector(".x-state"), lines = state.querySelectorAll(".x-ht");
+        if (!reduce) tasks.push(function (t, vh) {
+          var r = vis(state, vh); if (!r) return false;
+          var p = (vh - r.top) / (vh + r.height) - 0.5;
+          [].forEach.call(lines, function (el) { el.style.transform = "translate3d(" + (p * (el.classList.contains("x-ht--b") ? 7 : 14) * +el.getAttribute("data-dir")) + "vw,0,0)"; });
+          return false;
+        });
+
+        /* fit MIRALIYEV to the viewport width, after the display font loads */
+        var nf = $("name-fit"), nb = nf.parentNode;
+        function fitName() { nb.style.fontSize = "100px"; var w = nf.getBoundingClientRect().width; if (w) nb.style.fontSize = (100 * doc.documentElement.clientWidth * 0.95 / w).toFixed(2) + "px"; }
+        fitName(); sizers.push(fitName); if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(fitName);
+
+        /* path: staggered scanline wipe */
+        if (!reduce) {
+          $("path").classList.add("x-anim");
+          var pio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); pio.unobserve(e.target); } }); }, { rootMargin: "0px 0px -12% 0px" });
+          [].forEach.call(doc.querySelectorAll(".x-path li"), function (li) { pio.observe(li); });
+        }
+
+        /* seams: squares fade out in random order as the seam passes */
+        var CO = "#2233C8", PA = "#EEEDE8", HT = "#8890D8";
+        [].forEach.call(doc.querySelectorAll(".x-seam"), function (sm) {
+          var c = sm.querySelector("canvas"), x = c.getContext("2d"), cells = [], S, last = -1;
+          function size() { S = fit(c, 48); cells = []; for (var i = 0; i < Math.ceil(S.w / 24) * 2; i++) cells.push({ c: [CO, PA, HT][Math.floor(Math.random() * 3)], t: Math.random() }); last = -1; }
+          function draw(p) {
+            x.setTransform(S.d, 0, 0, S.d, 0, 0); x.clearRect(0, 0, S.w, 48);
+            var n = cells.length / 2;
+            cells.forEach(function (q, i) { var a = Math.max(0, Math.min(1, (q.t * 0.85 - p) * 8 + 1)); if (!a) return; x.globalAlpha = a; x.fillStyle = q.c; x.fillRect((i % n) * 24, Math.floor(i / n) * 24, 24, 24); });
+            x.globalAlpha = 1;
+          }
+          size(); sizers.push(size);
+          tasks.push(function (t, vh) {
+            var r = vis(sm, vh); if (!r) return false;
+            var p = reduce ? 0 : Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.6)));
+            if (p !== last) { last = p; draw(p); }
+            return false;
+          });
+        });
+
+        /* mountains: the ridge re-engraved as vertical cobalt hatching (thick in shadow, thin in light), rippling with scroll */
+        var rc = $("ridge"), rsec = $("skills"), rx = rc.getContext("2d"), cards = rsec.querySelectorAll(".x-sk"), R = null, step = 4, pre = null, rimg = new Image();
+        function rsize() {
+          if (!rimg.naturalWidth || !rc.clientWidth || !rc.clientHeight) return;
+          R = fit(rc); step = R.w < 760 ? 3 : 4;
+          var iw = rimg.naturalWidth, ih = rimg.naturalHeight, sc = Math.max(R.w / iw, R.h / ih);
+          var dw = iw * sc, dh = ih * sc, ox0 = (R.w - dw) / 2, oy0 = R.h - dh;
+          var cell = 3, n = Math.ceil(R.w / step), m = Math.ceil(R.h / cell);
+          var o = doc.createElement("canvas"), ox = o.getContext("2d"); o.width = n; o.height = m;
+          ox.drawImage(rimg, ox0 / step, oy0 / cell, dw / step, dh / cell);
+          var px; try { px = ox.getImageData(0, 0, n, m).data; } catch (e) { return; }
+          pre = doc.createElement("canvas"); pre.width = Math.round(R.w * R.d); pre.height = Math.round(R.h * R.d);
+          var pc = pre.getContext("2d"); pc.setTransform(R.d, 0, 0, R.d, 0, 0); pc.fillStyle = CO;
+          for (var j = 0; j < m; j++) {
+            var fy = j / m, boost = fy > 0.72 ? (fy - 0.72) / 0.28 : 0;
+            for (var i = 0; i < n; i++) {
+              var k = (j * n + i) * 4, a = px[k + 3] / 255; if (a < 0.2) continue;
+              var l = (px[k] * .3 + px[k + 1] * .59 + px[k + 2] * .11) / 255, dk = Math.pow(1 - Math.min(1, l * 1.6), 0.8);
+              var w = Math.min(step, step * (0.16 + 0.62 * dk + boost * 0.9) * Math.min(1, a * 1.3));
+              pc.fillRect(i * step + (step - w) / 2, j * cell, w, cell + 0.4);
+            }
+          }
+          rlast = -1; rdraw(0.5);
+        }
+        function rdraw(p) {
+          if (!pre) return;
+          rx.setTransform(1, 0, 0, 1, 0, 0); rx.clearRect(0, 0, rc.width, rc.height);
+          var cw = step * R.d, n = Math.ceil(rc.width / cw);
+          for (var i = 0; i < n; i++) {
+            var off = reduce ? 0 : (1 + Math.sin(i * 0.085 + p * Math.PI * 5)) * 4 * R.d;
+            rx.drawImage(pre, i * cw, 0, cw, pre.height, i * cw, off, cw, pre.height);
+          }
+          if (off !== undefined && !reduce) { rx.fillStyle = CO; rx.fillRect(0, rc.height - 10 * R.d, rc.width, 10 * R.d); }
+        }
+        rimg.onload = function () { rsize(); kick(); }; rimg.src = "ridge.webp";
+        sizers.push(rsize);
+        var rlast = -1;
+        tasks.push(function (t, vh) {
+          var r = vis(rsec, vh); if (!r || reduce) return false;
+          var p = (vh - r.top) / (vh + r.height);
+          if (Math.abs(p - rlast) > 0.0005) {
+            rlast = p; rdraw(p);
+            [].forEach.call(cards, function (el, i) { el.style.transform = "translate3d(0," + ((0.5 - p) * (16 + (i % 4) * 10)).toFixed(1) + "px,0)"; });
+          }
+          return false;
+        });
+
+        /* cta starfield: warps as the section nears the viewport centre */
+        var sc = $("stars"), ssec = $("touch"), sx = sc.getContext("2d"), stars = [], SS, spd = 0.05, st = 0;
+        function star(z) { return { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: z == null ? Math.random() : z }; }
+        for (var si = 0; si < 250; si++) stars.push(star());
+        function sdraw(trail) {
+          var cx = SS.w / 2, cy = SS.h / 2, f = Math.max(SS.w, SS.h) * 0.5;
+          sx.setTransform(SS.d, 0, 0, SS.d, 0, 0); sx.clearRect(0, 0, SS.w, SS.h);
+          sx.strokeStyle = PA; sx.lineCap = "round";
+          stars.forEach(function (s) {
+            var z0 = s.z + trail, a = 1 - s.z;
+            sx.globalAlpha = Math.min(1, a * 1.4); sx.lineWidth = 0.6 + a * 1.8;
+            sx.beginPath(); sx.moveTo(cx + s.x / z0 * f, cy + s.y / z0 * f); sx.lineTo(cx + s.x / s.z * f + .01, cy + s.y / s.z * f); sx.stroke();
+          });
+          sx.globalAlpha = 1;
+        }
+        function ssize() { SS = fit(sc); sdraw(0.004); }
+        ssize(); sizers.push(ssize);
+        if (!reduce) tasks.push(function (t, vh) {
+          var r = vis(ssec, vh); if (!r) { st = 0; return false; }
+          var dt = st ? Math.min(0.05, (t - st) / 1000) : 0.016; st = t;
+          var k = Math.max(0, 1 - Math.abs(r.top + r.height / 2 - vh / 2) / (vh * 0.5));
+          spd += ((0.05 + Math.pow(k, 3) * 1.4) - spd) * Math.min(1, dt * 3);
+          stars.forEach(function (s) { s.z -= spd * dt; if (s.z < 0.03) { var n = star(1); s.x = n.x; s.y = n.y; s.z = 1; } });
+          sdraw(Math.max(0.004, spd * 0.09));
+          return true;
+        });
+        kick();
+
+        /* hero mosaic resolve */
+        var cv = doc.getElementById("mosaic"), img = doc.getElementById("hero-img");
+        if (reduce || !cv.getContext) { cv.remove(); return; }
+        var ctx = cv.getContext("2d"), off = doc.createElement("canvas"), octx = off.getContext("2d");
+        function run() {
+          var w = cv.clientWidth, h = cv.clientHeight; if (!w || !h || !img.naturalWidth) { cv.remove(); return; } var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+          var iw = img.naturalWidth, ih = img.naturalHeight, s = Math.max(w / iw, h / ih);
+          var sw = w / s, sh = h / s, sx = iw - sw, sy = (ih - sh) / 2;
+          var sizes = [48, 32, 24, 16, 12, 8, 6, 4, 3, 2, 1], t0 = performance.now(), dur = 1100;
+          function frame(now) {
+            var k = Math.min(1, (now - t0) / dur), b = sizes[Math.min(sizes.length - 1, Math.floor(k * sizes.length))];
+            var bw = Math.max(1, Math.ceil(w / b)), bh = Math.max(1, Math.ceil(h / b));
+            off.width = bw; off.height = bh;
+            try { octx.drawImage(img, sx, sy, sw, sh, 0, 0, bw, bh); } catch (e) { cv.remove(); return; }
+            ctx.imageSmoothingEnabled = b === 1;
+            try { if (off.width && off.height && cv.width && cv.height) ctx.drawImage(off, 0, 0, bw, bh, 0, 0, cv.width, cv.height); } catch (e) { cv.remove(); return; }
+            if (k < 1) requestAnimationFrame(frame);
+            else { cv.style.opacity = "0"; setTimeout(function () { cv.remove(); }, 600); }
+          }
+          requestAnimationFrame(frame);
+        }
+        ctx.fillStyle = "#2233C8"; ctx.fillRect(0, 0, cv.width, cv.height);
+        if (img.complete && img.naturalWidth) run(); else { img.addEventListener("load", run); img.addEventListener("error", function () { cv.remove(); }); }
+      })();
+    </script>
+  </body>
 </html>
