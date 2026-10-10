@@ -788,7 +788,7 @@
           var sheet = doc.getElementById("sheet"), peek = doc.querySelector(".x-overscroll");
           if (!sheet || !peek || reduce) return;
           var raw = 0, pull = 0, springId = null, idleT = null;
-          function maxPull() { return Math.round(Math.min(peek.offsetHeight || 0, window.innerHeight * 0.4, 300)); }
+          function maxPull() { var cap = window.innerWidth < 760 ? 150 : 340; return Math.round(Math.min(peek.offsetHeight || 0, cap)); }
           function pullFromRaw(r) { var m = maxPull(); return Math.min(m, m * (1 - Math.exp(-Math.max(0, r) / (m * 1.35)))); }
           function apply() {
             if (pull <= 0.5) { pull = 0; raw = 0; sheet.style.transform = ""; return; }
