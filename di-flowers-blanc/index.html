@@ -67,6 +67,8 @@ body.ready .cue.away{transform:translate(-50%,50vh);transition:transform .9s cub
 #bouquet .pic{overflow:hidden}
 #bouquet .pic img{width:100%;display:block}
 #bouquet .pic .cap{margin-top:12px;font-size:10px;letter-spacing:.34em;color:var(--mut)}
+#bouquet .pic .more{margin-top:clamp(20px,3vh,32px)}
+#bouquet .pic .more img{width:100%;display:block}
 .ldimg{filter:blur(14px);transition:filter .9s ease}
 .ldimg.on{filter:none}
 .item{display:grid;grid-template-columns:84px 1fr auto;gap:18px;align-items:center;padding:18px 0;border-top:1px solid rgba(34,29,24,.14);transition:background .4s}
@@ -147,7 +149,7 @@ body.capture *{transition:none !important}
   <div class="kick rev">04 — ВАШ БУКЕТ</div>
   <h2 class="rev" style="--d:.06s">Соберите букет</h2>
   <div class="wrap">
-    <div class="pic rev" style="--d:.12s"><img class="ldimg" src="frames/bouquet.webp" alt="Букет DI Flowers"><div class="cap">АВТОРСКАЯ СБОРКА — КАЖДОЕ УТРО</div></div>
+    <div class="pic rev" style="--d:.12s"><img class="ldimg" src="frames/bouquet.webp" alt="Букет DI Flowers"><div class="cap">АВТОРСКАЯ СБОРКА — КАЖДОЕ УТРО</div><div class="more"><img class="ldimg" src="frames/bouquet-2.webp" alt="Букет из тюльпанов и роз"><div class="cap">ТЮЛЬПАНЫ И РОЗЫ — СБОРКА ПОД ВАШ ПОВОД</div></div></div>
     <div class="rev" style="--d:.18s">
       <div class="item" data-key="peony" data-price="45000"><img class="ldimg" src="frames/stem-peony.webp" alt="Пион"><div><div class="nm">Пион</div><div class="pr">45 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать пион">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить пион">+</button></div></div>
       <div class="item" data-key="tulip" data-price="18000"><img class="ldimg" src="frames/stem-tulip.webp" alt="Тюльпан"><div><div class="nm">Тюльпан</div><div class="pr">18 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать тюльпан">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить тюльпан">+</button></div></div>
