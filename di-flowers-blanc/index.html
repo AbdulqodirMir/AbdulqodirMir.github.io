@@ -129,11 +129,11 @@ body.capture *{transition:none !important}
   <div class="kick rev">04 — ВАШ БУКЕТ</div>
   <h2 class="rev">Соберите букет</h2>
   <div class="wrap">
-    <div class="pic rev"><img src="frames/bouquet.jpg" alt="Букет DI Flowers"><div class="cap">АВТОРСКАЯ СБОРКА — КАЖДОЕ УТРО</div></div>
+    <div class="pic rev"><img src="frames/bouquet.webp" alt="Букет DI Flowers"><div class="cap">АВТОРСКАЯ СБОРКА — КАЖДОЕ УТРО</div></div>
     <div class="rev">
-      <div class="item" data-price="45000"><img src="frames/stem-peony.jpg" alt="Пион"><div><div class="nm">Пион</div><div class="pr">45 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1">−</button><span class="q">0</span><button data-d="1">+</button></div></div>
-      <div class="item" data-price="18000"><img src="frames/stem-tulip.jpg" alt="Тюльпан"><div><div class="nm">Тюльпан</div><div class="pr">18 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1">−</button><span class="q">0</span><button data-d="1">+</button></div></div>
-      <div class="item" data-price="25000"><img src="frames/stem-rose.jpg" alt="Роза"><div><div class="nm">Роза</div><div class="pr">25 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1">−</button><span class="q">0</span><button data-d="1">+</button></div></div>
+      <div class="item" data-price="45000"><img src="frames/stem-peony.webp" alt="Пион"><div><div class="nm">Пион</div><div class="pr">45 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1">−</button><span class="q">0</span><button data-d="1">+</button></div></div>
+      <div class="item" data-price="18000"><img src="frames/stem-tulip.webp" alt="Тюльпан"><div><div class="nm">Тюльпан</div><div class="pr">18 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1">−</button><span class="q">0</span><button data-d="1">+</button></div></div>
+      <div class="item" data-price="25000"><img src="frames/stem-rose.webp" alt="Роза"><div><div class="nm">Роза</div><div class="pr">25 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1">−</button><span class="q">0</span><button data-d="1">+</button></div></div>
       <div class="total"><span class="tl">ИТОГО</span><span class="tv" id="grand">0 сум</span></div>
       <div class="order">
         <a class="btn" href="tel:+998941918115">ПОЗВОНИТЬ И ЗАКАЗАТЬ</a>
@@ -161,7 +161,8 @@ const CAP=qp.has('capture'); if(CAP) document.body.classList.add('capture');
 const forceP=qp.has('p')?Math.min(1,Math.max(0,parseFloat(qp.get('p')))):null;
 const onlySec=CAP&&qp.get('sec')?qp.get('sec'):null;
 const shot=CAP?qp.get('shot'):null;
-const N=16, FOCUS_X=0.62;
+const N=31, FOCUS_X=0.62;
+const FDIR=matchMedia("(max-width:760px)").matches?"m":"d";
 if(CAP) document.getElementById('loader').style.display='none';
 const blooms=[...document.querySelectorAll('.bloom')];
 if(onlySec) blooms.forEach(b=>{ if(b.id!==onlySec) b.style.display='none'; });
@@ -177,7 +178,7 @@ class Bloom{
     this.ctaEl=sec.querySelector('.cta');
     this.cards=[...sec.querySelectorAll('.card')];
     this.stepsEl=sec.querySelector('.steps');
-    for(let i=0;i<N;i++) this.stepsEl.appendChild(document.createElement('i'));
+    for(let i=0;i<12;i++) this.stepsEl.appendChild(document.createElement('i'));
     this.dots=[...this.stepsEl.children];
     this.fr=[]; this.sp=0; this.last=-1;
     this.beats=this.cards.map((c,i,arr)=>({el:c,a:0.26+i*(0.6/arr.length),b:0.26+(i+1)*(0.6/arr.length)}));
@@ -187,8 +188,9 @@ class Bloom{
     this.cv.width=this.sec.querySelector('.stage').clientWidth*d;
     this.cv.height=this.sec.querySelector('.stage').clientHeight*d; this.last=-1;}
   load(cb){let done=0;
-    for(let i=0;i<N;i++){const im=new Image();im.src='frames/'+this.pre+String(i).padStart(2,'0')+'.jpg';
-      im.onload=im.onerror=()=>{done++;cb&&cb(done);}; this.fr.push(im);}}
+    for(let i=0;i<N;i++){const im=new Image();im.src='frames/'+FDIR+'/'+this.pre+String(i).padStart(3,'0')+'.webp';
+      im.onload=()=>{im.decode().catch(()=>{}).finally(()=>{done++;cb&&cb(done);});};
+      im.onerror=()=>{done++;cb&&cb(done);}; this.fr.push(im);}}
   draw(idx){const img=this.fr[idx]; if(!img||!img.complete||!img.naturalWidth)return false;
     const iw=img.naturalWidth,ih=img.naturalHeight,cw=this.cv.width,ch=this.cv.height;
     const s=Math.max(cw/iw,ch/ih),dw=iw*s,dh=ih*s;
@@ -202,8 +204,8 @@ class Bloom{
     if(this.cueEl) this.cueEl.classList.toggle('away',p>0.05);
     this.beats.forEach(b=>b.el.classList.toggle('on',p>=b.a&&p<b.b));
     if(this.ctaEl) this.ctaEl.classList.toggle('on',p>=0.92);
-    const idx=Math.round(p*(N-1));
-    this.dots.forEach((d,i)=>d.classList.toggle('now',i===idx));}
+    const di=Math.round(p*11);
+    this.dots.forEach((d,i)=>d.classList.toggle('now',i===di));}
   tick(){const tp=this.prog();
     if(forceP===null){this.sp+=(tp-this.sp)*0.085; if(Math.abs(tp-this.sp)<0.0004)this.sp=tp;} else this.sp=tp;
     if(this.sec.style.display!=='none'){
@@ -218,7 +220,11 @@ const bar=document.getElementById('loadbar'),pctEl=document.getElementById('load
 B[0].load(done=>{const pc=Math.round(done/N*100); bar.style.width=pc+'%'; pctEl.textContent=pc+'%';
   if(done===N){document.getElementById('loader').classList.add('done');
     B[0].draw(0); B.forEach(b=>b.tick());
-    B.slice(1).forEach(b=>b.load()); }});
+    if(CAP){B.slice(1).forEach(b=>{b._ld=1;b.load();});}
+    else{const lio=new IntersectionObserver(es=>es.forEach(e=>{
+      if(e.isIntersecting){const b=B.find(x=>x.sec===e.target); if(b&&!b._ld){b._ld=1;b.load(); lio.unobserve(e.target);}}
+    }),{rootMargin:'150% 0px'});
+    B.slice(1).forEach(b=>lio.observe(b.sec));} }});
 if(CAP){B.forEach(b=>{b.sp=forceP||0; b.draw(Math.round(b.sp*(N-1))); b.ui(b.sp);});}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.15});
 document.querySelectorAll('.rev').forEach(el=>io.observe(el));
