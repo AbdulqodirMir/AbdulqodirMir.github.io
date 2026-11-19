@@ -14,6 +14,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script src="fold.js" defer></script>
+<link rel="preload" as="image" href="frames/fold/bouquet-fold-10.webp" fetchpriority="high">
+<link rel="preload" as="image" href="frames/fold/bouquet-2-fold-10.webp" fetchpriority="high">
 <style>
 :root{--ivory:#f7f2ea;--ink:#221d18;--mut:#8b8274;--gold:#b3925c;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',Helvetica,Arial,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -65,10 +68,13 @@ body.ready .cue.away{transform:translate(-50%,50vh);transition:transform .9s cub
 #bouquet h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,6vw,84px);letter-spacing:.04em;line-height:1.02;max-width:900px}
 #bouquet .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,80px);margin-top:clamp(40px,7vh,72px);align-items:start}
 #bouquet .pic{overflow:hidden}
-#bouquet .pic img{width:100%;display:block}
+#bouquet .pic img{width:100%;height:auto;display:block}
 #bouquet .pic .cap{margin-top:12px;font-size:10px;letter-spacing:.34em;color:var(--mut)}
 #bouquet .pic .more{margin-top:clamp(20px,3vh,32px)}
-#bouquet .pic .more img{width:100%;display:block}
+#bouquet .pic .more img{width:100%;height:auto;display:block}
+picture.fold-pos{position:relative}
+#bouquet .pic picture{display:block}
+canvas.fold-c{position:absolute;inset:0;width:100%!important;height:100%!important;pointer-events:none}
 .ldimg{filter:blur(14px);transition:filter .9s ease}
 .ldimg.on{filter:none}
 .item{display:grid;grid-template-columns:84px 1fr auto;gap:18px;align-items:center;padding:18px 0;border-top:1px solid rgba(34,29,24,.14);transition:background .4s}
@@ -149,11 +155,11 @@ body.capture *{transition:none !important}
   <div class="kick rev">04 — ВАШ БУКЕТ</div>
   <h2 class="rev" style="--d:.06s">Соберите букет</h2>
   <div class="wrap">
-    <div class="pic rev" style="--d:.12s"><img class="ldimg" src="frames/bouquet.webp" alt="Букет DI Flowers"><div class="cap">АВТОРСКАЯ СБОРКА — КАЖДОЕ УТРО</div><div class="more"><img class="ldimg" src="frames/bouquet-2.webp" alt="Букет из тюльпанов и роз"><div class="cap">ТЮЛЬПАНЫ И РОЗЫ — СБОРКА ПОД ВАШ ПОВОД</div></div></div>
+    <div class="pic rev" style="--d:.12s"><picture class="fold" data-fold="frames/fold/bouquet"><img loading="lazy" width="1400" height="787" src="frames/bouquet.webp" alt="Букет DI Flowers"></picture><div class="cap">АВТОРСКАЯ СБОРКА — КАЖДОЕ УТРО</div><div class="more"><picture class="fold" data-fold="frames/fold/bouquet-2"><img loading="lazy" width="1400" height="788" src="frames/bouquet-2.webp" alt="Букет из тюльпанов и роз"></picture><div class="cap">ТЮЛЬПАНЫ И РОЗЫ НА ВАШ ПОВОД</div></div></div>
     <div class="rev" style="--d:.18s">
-      <div class="item" data-key="peony" data-price="45000"><img class="ldimg" src="frames/stem-peony.webp" alt="Пион"><div><div class="nm">Пион</div><div class="pr">45 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать пион">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить пион">+</button></div></div>
-      <div class="item" data-key="tulip" data-price="18000"><img class="ldimg" src="frames/stem-tulip.webp" alt="Тюльпан"><div><div class="nm">Тюльпан</div><div class="pr">18 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать тюльпан">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить тюльпан">+</button></div></div>
-      <div class="item" data-key="rose" data-price="25000"><img class="ldimg" src="frames/stem-rose.webp" alt="Роза"><div><div class="nm">Роза</div><div class="pr">25 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать розу">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить розу">+</button></div></div>
+      <div class="item" data-key="peony" data-price="45000"><img class="ldimg" loading="lazy" src="frames/stem-peony.webp" alt="Пион"><div><div class="nm">Пион</div><div class="pr">45 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать пион">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить пион">+</button></div></div>
+      <div class="item" data-key="tulip" data-price="18000"><img class="ldimg" loading="lazy" src="frames/stem-tulip.webp" alt="Тюльпан"><div><div class="nm">Тюльпан</div><div class="pr">18 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать тюльпан">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить тюльпан">+</button></div></div>
+      <div class="item" data-key="rose" data-price="25000"><img class="ldimg" loading="lazy" src="frames/stem-rose.webp" alt="Роза"><div><div class="nm">Роза</div><div class="pr">25 000 СУМ / СТЕБЕЛЬ</div></div><div class="step"><button data-d="-1" aria-label="Убрать розу">−</button><span class="q">0</span><button data-d="1" aria-label="Добавить розу">+</button></div></div>
       <div class="total"><span class="tl">ИТОГО</span><span class="tv" id="grand">0 сум</span></div>
       <div class="order">
         <a class="btn" href="tel:+998941918115">ПОЗВОНИТЬ И ЗАКАЗАТЬ</a>
