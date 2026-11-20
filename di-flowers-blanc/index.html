@@ -122,7 +122,7 @@ body.capture *{transition:none !important}
 <body>
 <div id="loader"><div class="brand"><span class="m"><span class="mi" style="--d:.05s">DI FLOWERS</span></span></div><div class="bar"><i id="loadbar"></i></div><div class="pct" id="loadpct">0%</div></div>
 <header><div class="logo">DI FLOWERS</div><div class="where">ТАШКЕНТ</div></header>
-<section class="bloom" id="peony" data-pre="p" style="height:480vh">
+<section class="bloom" id="peony" data-pre="p" data-n="95" data-fx="0.48" style="height:480vh">
   <div class="stage"><canvas></canvas><div class="ui">
     <div class="headline"><div class="eyebrow"><span class="m"><span class="mi" style="--d:.3s">ЦВЕТЫ И ПОДАРКИ — ТАШКЕНТ</span></span></div><h1><span class="m"><span class="mi" style="--d:.42s">DI</span></span> <span class="m"><span class="mi" style="--d:.52s">FLOWERS</span></span></h1><div class="sub"><span class="m"><span class="mi" style="--d:.66s">Пион раскрывается, пока вы листаете.</span></span></div></div>
     <div class="card"><div class="no">01 — ПИОН</div><h3>Значение</h3><p>Любовь, благополучие и красивая жизнь. Пион дарят, когда слов недостаточно.</p><div class="thumb">п</div></div>
@@ -133,7 +133,7 @@ body.capture *{transition:none !important}
     <div class="steps"></div>
   </div></div>
 </section>
-<section class="bloom" id="tulip" data-pre="t" style="height:400vh">
+<section class="bloom" id="tulip" data-pre="t" data-n="95" data-fx="0.55" style="height:400vh">
   <div class="stage"><canvas></canvas><div class="ui">
     <div class="headline"><div class="eyebrow"><span class="m"><span class="mi">02 — ТЮЛЬПАН</span></span></div><h2><span class="m"><span class="mi" style="--d:.08s">Тюльпан</span></span></h2><div class="sub"><span class="m"><span class="mi" style="--d:.2s">Весна в одном стебле.</span></span></div></div>
     <div class="card"><div class="no">01 — ЗНАЧЕНИЕ</div><h3>Чистая любовь</h3><p>Тюльпан — признание без пафоса. Белый говорит о нежности и честных чувствах.</p><div class="thumb">т</div></div>
@@ -142,7 +142,7 @@ body.capture *{transition:none !important}
     <div class="steps"></div>
   </div></div>
 </section>
-<section class="bloom" id="rose" data-pre="r" style="height:400vh">
+<section class="bloom" id="rose" data-pre="r" data-n="95" data-fx="0.62" style="height:400vh">
   <div class="stage"><canvas></canvas><div class="ui">
     <div class="headline"><div class="eyebrow"><span class="m"><span class="mi">03 — РОЗА</span></span></div><h2><span class="m"><span class="mi" style="--d:.08s">Роза</span></span></h2><div class="sub"><span class="m"><span class="mi" style="--d:.2s">Классика, которая не устаревает.</span></span></div></div>
     <div class="card"><div class="no">01 — ЗНАЧЕНИЕ</div><h3>Нежность</h3><p>Розовая роза — восхищение и благодарность. Подарок, который всегда уместен.</p><div class="thumb">р</div></div>
@@ -190,7 +190,7 @@ if(CAP||RM) document.documentElement.style.scrollBehavior='auto';
 const forceP=qp.has('p')?Math.min(1,Math.max(0,parseFloat(qp.get('p')))):null;
 const onlySec=CAP&&qp.get('sec')?qp.get('sec'):null;
 const shot=CAP?qp.get('shot'):null;
-const N=31, FOCUS_X=0.62;
+const FOCUS_X=0.62;
 const FDIR=matchMedia("(max-width:760px)").matches?"m":"d";
 if(CAP){document.getElementById('loader').style.display='none';document.body.classList.add('ready');}
 const blooms=[...document.querySelectorAll('.bloom')];
@@ -201,6 +201,7 @@ if(shot==='bouquet'||shot==='visit'){ blooms.forEach(b=>b.style.display='none');
 class Bloom{
   constructor(sec){
     this.sec=sec; this.pre=sec.dataset.pre;
+    this.N=+(sec.dataset.n||31); this.fx=+(sec.dataset.fx||FOCUS_X);
     this.cv=sec.querySelector('canvas'); this.ctx=this.cv.getContext('2d');
     this.head=sec.querySelector('.headline');
     this.cueEl=sec.querySelector('.cue');
@@ -217,16 +218,16 @@ class Bloom{
     this.cv.width=this.sec.querySelector('.stage').clientWidth*d;
     this.cv.height=this.sec.querySelector('.stage').clientHeight*d; this.last=-1;}
   load(cb){let done=0;
-    for(let i=0;i<N;i++){const im=new Image();im.src='frames/'+FDIR+'/'+this.pre+String(i).padStart(3,'0')+'.webp';
+    for(let i=0;i<this.N;i++){const im=new Image();im.src='frames/'+FDIR+'/'+this.pre+String(i).padStart(3,'0')+'.webp';
       im.onload=()=>{im.decode().catch(()=>{}).finally(()=>{this.ok[i]=1;this.ld++;done++;cb&&cb(done);});};
       im.onerror=()=>{done++;cb&&cb(done);}; this.fr.push(im);}}
   near(idx){if(this.ok[idx])return idx;
-    for(let d=1;d<N;d++){if(this.ok[idx-d])return idx-d; if(this.ok[idx+d])return idx+d;}
+    for(let d=1;d<this.N;d++){if(this.ok[idx-d])return idx-d; if(this.ok[idx+d])return idx+d;}
     return -1;}
   draw(idx,blur){const img=this.fr[idx]; if(!img||!this.ok[idx])return false;
     const iw=img.naturalWidth,ih=img.naturalHeight,cw=this.cv.width,ch=this.cv.height;
     const s=Math.max(cw/iw,ch/ih),dw=iw*s,dh=ih*s;
-    let dx=(cw-dw)*FOCUS_X,dy=(ch-dh)*0.5;
+    let dx=(cw-dw)*this.fx,dy=(ch-dh)*0.5;
     dx=Math.min(0,Math.max(cw-dw,dx)); dy=Math.min(0,Math.max(ch-dh,dy));
     this.ctx.filter=blur>0.5?'blur('+Math.round(blur)+'px)':'none';
     this.ctx.drawImage(img,dx,dy,dw,dh); this.ctx.filter='none'; return true;}
@@ -243,8 +244,8 @@ class Bloom{
   tick(){const tp=this.prog();
     if(forceP===null&&!RM){const d=tp-this.sp,k=0.075+Math.min(0.3,Math.abs(d)*0.9);this.sp+=d*k; if(Math.abs(d)<0.0004)this.sp=tp;} else this.sp=tp;
     if(this.sec.style.display!=='none'&&(this.vis||forceP!==null)){
-      const idx=this.near(Math.round(this.sp*(N-1)));
-      const blur=this.ld<N?14*(1-this.ld/N):0;
+      const idx=this.near(Math.round(this.sp*(this.N-1)));
+      const blur=this.ld<this.N?14*(1-this.ld/this.N):0;
       if(idx>=0&&(idx!==this.last||blur>0)){if(this.draw(idx,blur))this.last=idx;}
       this.ui(this.sp);}
     requestAnimationFrame(()=>this.tick());}
@@ -252,18 +253,18 @@ class Bloom{
 const B=blooms.map(s=>new Bloom(s));
 addEventListener('resize',()=>B.forEach(b=>b.resize()));
 const bar=document.getElementById('loadbar'),pctEl=document.getElementById('loadpct');
-B[0].load(done=>{const pc=Math.round(done/N*100); bar.style.width=pc+'%'; pctEl.textContent=pc+'%';
-  if(done===N){document.getElementById('loader').classList.add('done');
+B[0].load(done=>{const pc=Math.round(done/B[0].N*100); bar.style.width=pc+'%'; pctEl.textContent=pc+'%';
+  if(done===B[0].N){document.getElementById('loader').classList.add('done');
     setTimeout(()=>document.body.classList.add('ready'),CAP?0:220);
     B[0].draw(0,0); B.forEach(b=>b.tick());
-    if(CAP){B.slice(1).forEach(b=>{b._ld=1;b.load();});}
+    if(CAP){B.slice(1).forEach(b=>{if(!onlySec||b.sec.id===onlySec){b._ld=1;b.load();}});}
     else{const lio=new IntersectionObserver(es=>es.forEach(e=>{
       if(e.isIntersecting){const b=B.find(x=>x.sec===e.target); if(b&&!b._ld){b._ld=1;b.load(); lio.unobserve(e.target);}}
     }),{rootMargin:'150% 0px'});
     B.slice(1).forEach(b=>lio.observe(b.sec));} }});
-if(CAP){B.forEach(b=>{b.sp=forceP||0; const i=b.near(Math.round(b.sp*(N-1))); if(i>=0){b.draw(i,0); b.last=i;} b.ui(b.sp);});
+if(CAP){B.forEach(b=>{b.sp=forceP||0; const i=b.near(Math.round(b.sp*(b.N-1))); if(i>=0){b.draw(i,0); b.last=i;} b.ui(b.sp);});
   const t0=performance.now();
-  (function chk(){const okB=B.every(b=>b.sec.style.display==='none'||b.last>=0);
+  (function chk(){const okB=B.every(b=>b.sec.style.display==='none'||(b.last>=0&&b.ld>=b.N));
     const okI=[...document.images].every(im=>im.complete);
     if((okB&&okI)||performance.now()-t0>30000){window.__ready=1;} else requestAnimationFrame(chk);})();}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.15});
