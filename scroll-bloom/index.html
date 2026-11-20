@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SCROLL BLOOM — один движок, три настроения (черновик, не для публикации)</title>
+<meta name="description" content="Частная демонстрация движка scroll-bloom: три настроения для цветочных магазинов. Не для публикации.">
+<meta name="theme-color" content="#141210">
+<meta name="robots" content="noindex,nofollow">
+<meta name="x-preview" content="private engine pitch draft - not for publication">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#141210;--ink:#f0e9df;--mut:#8f857b;--line:rgba(240,233,223,.14);--serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',Helvetica,Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden}
+::selection{background:#9a6b43;color:#fff}
+header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:26px clamp(20px,4vw,56px);text-shadow:0 1px 14px rgba(20,18,16,.65)}
+header .logo{font-family:var(--serif);font-size:19px;letter-spacing:.34em;font-weight:500}
+header .where{font-size:10px;letter-spacing:.4em;color:var(--mut)}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(20px,6vw,90px)}
+.hero .eyebrow{font-size:11px;letter-spacing:.44em;color:var(--mut);margin-bottom:26px}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(46px,7.5vw,110px);line-height:1;letter-spacing:.04em;max-width:1000px}
+.hero h1 em{font-style:italic;color:#c9a36b}
+.hero .sub{margin-top:28px;font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.7vw,23px);color:#b8ab9d;max-width:620px;line-height:1.5}
+.m{display:inline-block;overflow:hidden;vertical-align:bottom}
+.mi{display:inline-block;transform:translateY(115%);transition:transform 1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+body.ready .mi{transform:none}
+.moods{padding:clamp(60px,10vh,120px) clamp(20px,6vw,90px)}
+.mood{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,5vw,80px);align-items:center;padding:clamp(48px,8vh,96px) 0;border-top:1px solid var(--line)}
+.mood:nth-child(even) .pic{order:2}
+.mood .pic{overflow:hidden}
+.mood .pic img{width:100%;height:auto;display:block;transform:translateY(40px) scale(1.04);transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
+.mood.on .pic img{transform:none}
+.mood .no{font-size:10px;letter-spacing:.42em;color:#c9a36b;margin-bottom:16px}
+.mood h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.4vw,60px);letter-spacing:.04em;line-height:1.05}
+.mood .tag{margin-top:14px;font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.5vw,20px);color:#b8ab9d}
+.mood p{margin-top:18px;font-size:12.5px;line-height:1.8;color:#9c9187;font-weight:300;max-width:420px}
+.mood .chips{display:flex;gap:8px;margin-top:22px}
+.mood .chips i{width:22px;height:22px;border-radius:50%;border:1px solid var(--line)}
+.mood .go{display:inline-block;margin-top:26px;font-size:11px;letter-spacing:.4em;text-indent:.4em;text-decoration:none;color:var(--ink);border:1px solid var(--line);padding:15px 28px;transition:background .3s,color .3s}
+.mood .go:hover{background:var(--ink);color:var(--bg)}
+.mood .lbl{margin-top:12px;font-size:9px;letter-spacing:.3em;color:var(--mut)}
+.mood,.mood .txt{transform:translateY(60px);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.mood.on,.mood.on .txt{transform:none}
+.about{padding:clamp(70px,12vh,140px) clamp(20px,6vw,90px);border-top:1px solid var(--line)}
+.about .kick{font-size:11px;letter-spacing:.44em;color:var(--mut);margin-bottom:26px}
+.about h2{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,72px);letter-spacing:.04em;line-height:1.05;max-width:900px}
+.about .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px);margin-top:clamp(44px,7vh,72px);max-width:1100px}
+.about .cell{border-top:1px solid var(--line);padding-top:20px}
+.about .cell .k{font-size:10px;letter-spacing:.42em;color:#c9a36b;margin-bottom:14px}
+.about .cell .v{font-family:var(--serif);font-size:clamp(17px,1.6vw,22px);line-height:1.5;color:#cfc4b6}
+footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin:0 clamp(20px,6vw,90px);padding:26px 0 40px;font-size:10px;letter-spacing:.34em;color:var(--mut)}
+.rev{transform:translateY(60px);transition:transform 1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rev.on{transform:none}
+@media (max-width:760px){
+  .mood{grid-template-columns:1fr}
+  .mood:nth-child(even) .pic{order:0}
+  .about .grid{grid-template-columns:1fr;gap:30px}
+  header .where{display:none}
+}
+</style>
+</head>
+<body class="ready">
+<header><div class="logo">SCROLL BLOOM</div><div class="where">ЧАСТНЫЙ ЧЕРНОВИК</div></header>
+<section class="hero">
+  <div class="eyebrow"><span class="m"><span class="mi" style="--d:.1s">ДВИЖОК ДЛЯ ЦВЕТОЧНЫХ МАГАЗИНОВ — ТАШКЕНТ</span></span></div>
+  <h1><span class="m"><span class="mi" style="--d:.2s">Один движок.</span></span><br><span class="m"><span class="mi" style="--d:.32s">Три <em>настроения.</em></span></span></h1>
+  <div class="sub"><span class="m"><span class="mi" style="--d:.46s">Цветок раскрывается, пока гость листает страницу. Один и тот же механизм — три разных характера магазина.</span></span></div>
+</section>
+<section class="moods">
+  <div class="mood">
+    <div class="pic"><img src="frames/blanc.webp" alt="Пион в светлой гамме, демо-кадр"></div>
+    <div class="txt">
+      <div class="no">01 — СВЕТ</div>
+      <h2>Atelier Blanc</h2>
+      <div class="tag">Светлая слоновая кость, воздух, свадебная нежность.</div>
+      <p>Действующий сайт DI Flowers. Тюльпан, пион и роза раскрываются на светлом фоне; конструктор букета считает состав прямо на странице.</p>
+      <div class="chips"><i style="background:#f7f2ea"></i><i style="background:#d8cfc0"></i><i style="background:#8b8177"></i></div>
+      <a class="go" href="/di-flowers-blanc/">ОТКРЫТЬ САЙТ</a>
+      <div class="lbl">ДЕЙСТВУЮЩИЙ САЙТ</div>
+    </div>
+  </div>
+  <div class="mood">
+    <div class="pic"><img src="frames/dalia.webp" alt="Роза в сумеречной гамме, демо-кадр"></div>
+    <div class="txt">
+      <div class="no">02 — СУМЕРКИ</div>
+      <h2>Dalia Roses</h2>
+      <div class="tag">Тёмный бархат, голландские мастера, вечерний свет.</div>
+      <p>Тот же движок, повёрнутый в ночь: приглушённые кадры, тёмное стекло карточек, акцент цвета розы. Характер магазина премиальных роз.</p>
+      <div class="chips"><i style="background:#161114"></i><i style="background:#c14f66"></i><i style="background:#9d9189"></i></div>
+      <a class="go" href="/dalia-roses-concept/">СМОТРЕТЬ КОНЦЕПТ</a>
+      <div class="lbl">ДИЗАЙН-КОНЦЕПТ — НЕОФИЦИАЛЬНЫЙ</div>
+    </div>
+  </div>
+  <div class="mood">
+    <div class="pic"><img src="frames/mag.webp" alt="Белый тюльпан в минималистичной гамме, демо-кадр"></div>
+    <div class="txt">
+      <div class="no">03 — МИНИМУМ</div>
+      <h2>M.A.G Flowers</h2>
+      <div class="tag">Строгая композиция, редкие сорта, короткие серии.</div>
+      <p>Третий характер: тёплый минимализм и ничего лишнего. Один сорт, один оттенок, чистая форма — тон магазина лимитированных букетов.</p>
+      <div class="chips"><i style="background:#f4f0e8"></i><i style="background:#9a6b43"></i><i style="background:#1b1712"></i></div>
+      <a class="go" href="/mag-flowers-concept/">СМОТРЕТЬ КОНЦЕПТ</a>
+      <div class="lbl">ДИЗАЙН-КОНЦЕПТ — НЕОФИЦИАЛЬНЫЙ</div>
+    </div>
+  </div>
+</section>
+<section class="about">
+  <div class="kick rev">КАК ЭТО РАБОТАЕТ</div>
+  <h2 class="rev" style="--d:.06s">Прокрутка превращается в цветение</h2>
+  <div class="grid">
+    <div class="cell rev" style="--d:.1s"><div class="k">МЕХАНИКА</div><div class="v">188 кадров цветения привязаны к прокрутке с пружинной физикой</div></div>
+    <div class="cell rev" style="--d:.18s"><div class="k">СМЕНА КОЖИ</div><div class="v">палитра, типографика и карточки меняются без переписывания движка</div></div>
+    <div class="cell rev" style="--d:.26s"><div class="k">КОНСТРУКТОР</div><div class="v">моно-букет собирается и считается прямо на странице</div></div>
+  </div>
+</section>
+<footer><span>SCROLL BLOOM</span><span>ЧАСТНАЯ ДЕМОНСТРАЦИЯ — НЕ ДЛЯ ПУБЛИКАЦИИ</span></footer>
+<script>
+(function(){
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.18});
+document.querySelectorAll('.mood,.rev').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
