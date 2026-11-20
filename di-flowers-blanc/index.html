@@ -49,7 +49,7 @@ body.ready .mi{transform:none}
 body.ready .cue{transform:translate(-50%,0)}
 .cue::after{content:"";display:block;width:1px;height:44px;background:var(--mut);margin:12px auto 0;opacity:.6}
 body.ready .cue.away{transform:translate(-50%,50vh);transition:transform .9s cubic-bezier(.16,1,.3,1)}
-.card{position:absolute;left:clamp(20px,6vw,90px);bottom:clamp(88px,13vh,140px);width:min(370px,calc(100vw - 40px));background:rgba(255,253,247,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(34,29,24,.08);padding:26px 28px 24px;transform:translateY(calc(100% + 25vh));transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.card{position:absolute;left:clamp(20px,6vw,90px);bottom:clamp(88px,13vh,140px);width:min(370px,calc(100vw - 40px));background:rgba(255,253,247,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(34,29,24,.08);padding:26px 28px 24px;translate:0 var(--plx,0px);transform:translateY(calc(100% + 25vh));transition:transform .9s cubic-bezier(.16,1,.3,1)}
 .card.on{transform:translateY(0)}
 .card .no{font-size:10px;letter-spacing:.42em;color:var(--gold);margin-bottom:12px}
 .card h3{font-family:var(--serif);font-weight:400;font-size:27px;letter-spacing:.04em;margin-bottom:8px}
@@ -60,8 +60,8 @@ body.ready .cue.away{transform:translate(-50%,50vh);transition:transform .9s cub
 .cta a{display:inline-block;font-size:11px;letter-spacing:.4em;text-indent:.4em;text-decoration:none;color:var(--ink);background:rgba(255,253,247,.88);border:1px solid rgba(34,29,24,.14);padding:17px 34px;white-space:nowrap;transition:background .3s,color .3s,border-color .3s}
 .cta a:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 .steps{position:absolute;right:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;align-items:center}
-.steps i{width:4px;height:4px;border-radius:50%;background:#c8bda9;transition:background .3s,transform .3s}
-.steps i.now{background:var(--gold);transform:scale(1.8)}
+.steps i{width:4px;height:4px;border-radius:2px;background:#c8bda9;transition:background .3s,height .35s cubic-bezier(.16,1,.3,1)}
+.steps i.now{background:var(--gold);height:18px}
 /* ---------- bouquet / cart ---------- */
 #bouquet{background:var(--ivory);padding:clamp(90px,14vh,160px) clamp(20px,6vw,90px);border-top:1px solid rgba(34,29,24,.1)}
 #bouquet .kick{font-size:11px;letter-spacing:.44em;color:var(--mut);margin-bottom:26px}
@@ -122,7 +122,7 @@ body.capture *{transition:none !important}
 <body>
 <div id="loader"><div class="brand"><span class="m"><span class="mi" style="--d:.05s">DI FLOWERS</span></span></div><div class="bar"><i id="loadbar"></i></div><div class="pct" id="loadpct">0%</div></div>
 <header><div class="logo">DI FLOWERS</div><div class="where">ТАШКЕНТ</div></header>
-<section class="bloom" id="peony" data-pre="p" data-n="95" data-fx="0.48" style="height:480vh">
+<section class="bloom" id="peony" data-pre="p" data-n="188" data-fx="0.48" style="height:480vh">
   <div class="stage"><canvas></canvas><div class="ui">
     <div class="headline"><div class="eyebrow"><span class="m"><span class="mi" style="--d:.3s">ЦВЕТЫ И ПОДАРКИ — ТАШКЕНТ</span></span></div><h1><span class="m"><span class="mi" style="--d:.42s">DI</span></span> <span class="m"><span class="mi" style="--d:.52s">FLOWERS</span></span></h1><div class="sub"><span class="m"><span class="mi" style="--d:.66s">Пион раскрывается, пока вы листаете.</span></span></div></div>
     <div class="card"><div class="no">01 — ПИОН</div><h3>Значение</h3><p>Любовь, благополучие и красивая жизнь. Пион дарят, когда слов недостаточно.</p><div class="thumb">п</div></div>
@@ -133,7 +133,7 @@ body.capture *{transition:none !important}
     <div class="steps"></div>
   </div></div>
 </section>
-<section class="bloom" id="tulip" data-pre="t" data-n="95" data-fx="0.55" style="height:400vh">
+<section class="bloom" id="tulip" data-pre="t" data-n="188" data-fx="0.55" style="height:400vh">
   <div class="stage"><canvas></canvas><div class="ui">
     <div class="headline"><div class="eyebrow"><span class="m"><span class="mi">02 — ТЮЛЬПАН</span></span></div><h2><span class="m"><span class="mi" style="--d:.08s">Тюльпан</span></span></h2><div class="sub"><span class="m"><span class="mi" style="--d:.2s">Весна в одном стебле.</span></span></div></div>
     <div class="card"><div class="no">01 — ЗНАЧЕНИЕ</div><h3>Чистая любовь</h3><p>Тюльпан — признание без пафоса. Белый говорит о нежности и честных чувствах.</p><div class="thumb">т</div></div>
@@ -142,7 +142,7 @@ body.capture *{transition:none !important}
     <div class="steps"></div>
   </div></div>
 </section>
-<section class="bloom" id="rose" data-pre="r" data-n="95" data-fx="0.62" style="height:400vh">
+<section class="bloom" id="rose" data-pre="r" data-n="188" data-fx="0.62" style="height:400vh">
   <div class="stage"><canvas></canvas><div class="ui">
     <div class="headline"><div class="eyebrow"><span class="m"><span class="mi">03 — РОЗА</span></span></div><h2><span class="m"><span class="mi" style="--d:.08s">Роза</span></span></h2><div class="sub"><span class="m"><span class="mi" style="--d:.2s">Классика, которая не устаревает.</span></span></div></div>
     <div class="card"><div class="no">01 — ЗНАЧЕНИЕ</div><h3>Нежность</h3><p>Розовая роза — восхищение и благодарность. Подарок, который всегда уместен.</p><div class="thumb">р</div></div>
@@ -210,7 +210,7 @@ class Bloom{
     this.stepsEl=sec.querySelector('.steps');
     for(let i=0;i<12;i++) this.stepsEl.appendChild(document.createElement('i'));
     this.dots=[...this.stepsEl.children];
-    this.fr=[]; this.ok=[]; this.ld=0; this.sp=0; this.last=-1; this.vis=false;
+    this.fr=[]; this.ok=[]; this.ld=0; this.sp=0; this.last=-1; this.vis=false; this.vel=0; this.lastT=0;
     this.beats=this.cards.map((c,i,arr)=>({el:c,a:0.26+i*(0.6/arr.length),b:0.26+(i+1)*(0.6/arr.length)}));
     this.resize();
   }
@@ -219,7 +219,7 @@ class Bloom{
     this.cv.height=this.sec.querySelector('.stage').clientHeight*d; this.last=-1;}
   load(cb){let done=0;
     for(let i=0;i<this.N;i++){const im=new Image();im.src='frames/'+FDIR+'/'+this.pre+String(i).padStart(3,'0')+'.webp';
-      im.onload=()=>{im.decode().catch(()=>{}).finally(()=>{this.ok[i]=1;this.ld++;done++;cb&&cb(done);});};
+      im.onload=()=>{this.ok[i]=1;this.ld++;done++;cb&&cb(done);};
       im.onerror=()=>{done++;cb&&cb(done);}; this.fr.push(im);}}
   near(idx){if(this.ok[idx])return idx;
     for(let d=1;d<this.N;d++){if(this.ok[idx-d])return idx-d; if(this.ok[idx+d])return idx+d;}
@@ -237,16 +237,21 @@ class Bloom{
     return Math.min(1,Math.max(0,-r.top/(this.sec.offsetHeight-innerHeight)));}
   ui(p){this.head.classList.toggle('away',p>0.10);
     if(this.cueEl) this.cueEl.classList.toggle('away',p>0.05);
-    this.beats.forEach(b=>b.el.classList.toggle('on',p>=b.a&&p<b.b));
+    this.beats.forEach(b=>{const on=p>=b.a&&p<b.b; b.el.classList.toggle('on',on);
+      if(on&&forceP===null&&!CAP&&!RM){const c=(b.a+b.b)/2,o=Math.max(-1,Math.min(1,(c-p)*4)); b.el.style.setProperty('--plx',(o*14).toFixed(1)+'px');}});
     if(this.ctaEl) this.ctaEl.classList.toggle('on',p>=0.92);
     const di=Math.round(p*11);
     this.dots.forEach((d,i)=>d.classList.toggle('now',i===di));}
   tick(){const tp=this.prog();
-    if(forceP===null&&!RM){const d=tp-this.sp,k=0.075+Math.min(0.3,Math.abs(d)*0.9);this.sp+=d*k; if(Math.abs(d)<0.0004)this.sp=tp;} else this.sp=tp;
+    if(forceP===null&&!RM){const now=performance.now(),dt=Math.min(.05,(now-(this.lastT||now))/1000);this.lastT=now;
+      const a=(tp-this.sp)*110-this.vel*17; this.vel+=a*dt; this.sp+=this.vel*dt;
+      if(Math.abs(tp-this.sp)<0.0004&&Math.abs(this.vel)<0.002){this.sp=tp;this.vel=0;}}
+    else{this.sp=tp;this.vel=0;}
     if(this.sec.style.display!=='none'&&(this.vis||forceP!==null)){
       const idx=this.near(Math.round(this.sp*(this.N-1)));
       const blur=this.ld<this.N?14*(1-this.ld/this.N):0;
       if(idx>=0&&(idx!==this.last||blur>0)){if(this.draw(idx,blur))this.last=idx;}
+      for(let w=1;w<=8;w++){const f=this.fr[idx+w]; if(f&&this.ok[idx+w]&&f.decode) f.decode().catch(()=>{});}
       this.ui(this.sp);}
     requestAnimationFrame(()=>this.tick());}
 }
@@ -287,6 +292,18 @@ document.querySelectorAll('.cta a[data-add]').forEach(a=>a.addEventListener('cli
   const it=document.querySelector('.item[data-key="'+a.dataset.add+'"]');
   if(it) bump(it,1);}));
 total();
+if(!CAP&&!RM&&matchMedia('(pointer:fine)').matches){
+  document.querySelectorAll('.cta a').forEach(a=>{
+    let tx=0,ty=0,cx=0,cy=0,on=false;
+    a.addEventListener('mousemove',e=>{const r=a.getBoundingClientRect();
+      tx=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/(r.width/2)));
+      ty=Math.max(-1,Math.min(1,(e.clientY-r.top-r.height/2)/(r.height/2))); on=true;});
+    a.addEventListener('mouseleave',()=>{on=false;});
+    (function mag(){const gx=on?tx*7:0,gy=on?ty*5:0;
+      cx+=(gx-cx)*.12; cy+=(gy-cy)*.12;
+      a.style.translate=cx.toFixed(2)+'px '+cy.toFixed(2)+'px';
+      requestAnimationFrame(mag);})();});
+}
 })();
 </script>
 </body>
