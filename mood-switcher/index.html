@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="x-preview" content="mood switcher study - private draft, not for publication">
+<title>MOOD SWITCHER — один движок, четыре настроения (черновик, не для публикации)</title>
+<style>
+:root{--serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#0c0b0a;color:#e8e2d8;font-family:var(--sans)}
+.stage{position:fixed;inset:0}
+.pane{position:absolute;inset:0;transform:translateY(102%);transition:transform 1.05s cubic-bezier(.77,0,.18,1);will-change:transform;background:#0c0b0a}
+.pane.cur{transform:translateY(0)}
+.pane.above{z-index:2}
+.pane .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:translateY(6%);transition:transform 1.05s cubic-bezier(.77,0,.18,1)}
+.pane.cur .bg{transform:translateY(0)}
+.pane .veil{position:absolute;inset:0}
+.pane .inner{position:absolute;left:clamp(24px,7vw,110px);bottom:clamp(80px,14vh,140px);right:clamp(24px,7vw,110px)}
+.pane .no{font-size:10px;letter-spacing:.42em;margin-bottom:18px}
+.pane h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,7.2vw,104px);letter-spacing:.03em;line-height:1.02}
+.pane .tag{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,21px)}
+.pane .lbl{display:inline-block;margin-top:26px;font-size:9px;letter-spacing:.32em;padding:10px 16px;border:1px solid currentColor;opacity:.85}
+.menu{position:fixed;z-index:10;top:50%;right:clamp(18px,3.4vw,52px);transform:translateY(-50%);display:flex;flex-direction:column;gap:18px}
+.menu button{all:unset;cursor:pointer;text-align:right;font-size:10px;letter-spacing:.34em;color:#e8e2d8;opacity:.55;transition:opacity .35s;padding:4px 0}
+.menu button.on{opacity:1}
+.menu button:hover{opacity:.75}
+.menu button .n{font-family:var(--serif);font-style:italic;font-size:12px;margin-right:10px;letter-spacing:.1em}
+.menu button .short{display:none}
+.brand{position:fixed;z-index:10;top:28px;left:clamp(24px,7vw,110px);font-size:11px;letter-spacing:.5em;color:#e8e2d8;opacity:.9}
+.priv{position:fixed;z-index:10;top:30px;right:clamp(18px,3.4vw,52px);font-size:9px;letter-spacing:.32em;color:#e8e2d8;opacity:.5}
+.foot{position:fixed;z-index:10;bottom:26px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.3em;color:#e8e2d8;opacity:.45}
+@media(max-width:640px){
+  .menu{top:auto;bottom:78px;right:0;left:0;transform:none;flex-direction:row;justify-content:center;gap:10px}
+  .menu button{text-align:center;font-size:8px;letter-spacing:.14em}
+  .menu button .n{display:block;margin:0 0 4px}
+  .menu button .full{display:none}
+  .menu button .short{display:inline}
+  .pane .inner{bottom:170px}
+}
+</style>
+</head>
+<body>
+<div class="brand">SCROLL BLOOM</div>
+<div class="priv">ЧАСТНЫЙ ЧЕРНОВИК</div>
+<div class="stage" id="stage"></div>
+<nav class="menu" id="menu"></nav>
+<div class="foot">ОДИН ДВИЖОК — ЧЕТЫРЕ НАСТРОЕНИЯ — НЕ ДЛЯ ПУБЛИКАЦИИ</div>
+<script>
+const MOODS=[
+ {id:'blanc',no:'01',name:'Atelier Blanc',tag:'Светлая слоновая кость, воздух, свадебная нежность.',img:'../scroll-bloom/frames/blanc.webp',ink:'#3a342c',pane:'#f2ece2',veil:'linear-gradient(15deg,rgba(242,236,226,.88) 0%,rgba(242,236,226,.30) 55%,rgba(242,236,226,.12) 100%)',lbl:'ДЕЙСТВУЮЩИЙ САЙТ',menuInk:'#3a342c'},
+ {id:'dalia',no:'02',name:'Dalia Roses',tag:'Тёмный бархат, голландские мастера, вечерний свет.',img:'../scroll-bloom/frames/dalia.webp',ink:'#e9ddd3',pane:'#161114',veil:'linear-gradient(15deg,rgba(22,17,20,.88) 0%,rgba(22,17,20,.32) 55%,rgba(22,17,20,.14) 100%)',lbl:'ДИЗАЙН-КОНЦЕПТ — НЕОФИЦИАЛЬНЫЙ',menuInk:'#e9ddd3'},
+ {id:'mag',no:'03',name:'M.A.G Flowers',tag:'Строгая композиция, редкие сорта, короткие серии.',img:'../scroll-bloom/frames/mag.webp',ink:'#2b241c',pane:'#f1ebe1',veil:'linear-gradient(15deg,rgba(241,235,225,.88) 0%,rgba(241,235,225,.30) 55%,rgba(241,235,225,.12) 100%)',lbl:'ДИЗАЙН-КОНЦЕПТ — НЕОФИЦИАЛЬНЫЙ',menuInk:'#2b241c'},
+ {id:'noir',no:'04',name:'Fleur Noir',tag:'Чёрное стекло, серебро, форма и свет без цвета.',img:'../scroll-bloom/frames/noir.webp',ink:'#d9d9d9',pane:'#0e0d0c',veil:'linear-gradient(15deg,rgba(14,13,12,.88) 0%,rgba(14,13,12,.32) 55%,rgba(14,13,12,.14) 100%)',lbl:'ЭТЮД НАСТРОЕНИЯ — ВЫДУМАННАЯ МАРКА',menuInk:'#d9d9d9'}
+];
+const SHORT={blanc:'BLANC',dalia:'DALIA',mag:'M.A.G',noir:'NOIR'};
+const stage=document.getElementById('stage'),menu=document.getElementById('menu');
+MOODS.forEach((m,i)=>{
+ const d=document.createElement('div');d.className='pane';d.style.background=m.pane;
+ d.innerHTML=`<div class="bg" style="background-image:url('${m.img}')"></div><div class="veil" style="background:${m.veil}"></div><div class="inner" style="color:${m.ink}"><div class="no">${m.no} — НАСТРОЕНИЕ</div><h1>${m.name}</h1><div class="tag">${m.tag}</div><div class="lbl">${m.lbl}</div></div>`;
+ stage.appendChild(d);
+ const b=document.createElement('button');b.innerHTML=`<span class="n">${m.no}</span><span class="full">${m.name.toUpperCase()}</span><span class="short">${SHORT[m.id]}</span>`;b.addEventListener('click',()=>go(i));menu.appendChild(b);
+});
+const panes=[...stage.children],btns=[...menu.children];
+let cur=-1,busy=false;
+function paint(i){btns.forEach((b,j)=>{b.classList.toggle('on',j===i);b.style.color=MOODS[i].menuInk;});
+ document.querySelector('.brand').style.color=MOODS[i].menuInk;
+ document.querySelector('.priv').style.color=MOODS[i].menuInk;
+ document.querySelector('.foot').style.color=MOODS[i].menuInk;}
+function go(i){
+ if(busy||i===cur)return;busy=true;
+ const from=panes[cur],to=panes[i];
+ panes.forEach(p=>p.classList.remove('above'));
+ to.classList.add('above');
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  to.classList.add('cur');
+  if(from)setTimeout(()=>{from.classList.remove('cur');},1100);
+  paint(i);
+  setTimeout(()=>{busy=false;},1120);
+ }));
+ cur=i;
+}
+document.addEventListener('keydown',e=>{
+ if(e.key==='ArrowDown'||e.key==='ArrowRight')go(Math.min(MOODS.length-1,cur+1));
+ if(e.key==='ArrowUp'||e.key==='ArrowLeft')go(Math.max(0,cur-1));
+});
+go(0);
+</script>
+</body>
+</html>
